@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="问题描述Matplotlib无法识别中文字符的Unicode，调用plot.show()函数后，原中文字符处由方框代为显示。     *运行环境：Ubuntu 20.04 LTS，Python 3.10.，matplotlib 3.8.3 解决方法手动下载支持Unicode中文解码的字体，给出几个例子：     简体中文 SimSun.ttf 黑体 HeiTi.ttf 雅黑 Yahei.ttf …">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Matplotlib doesn&#39;t support Chinese">
+<meta property="og:url" content="https://yuqidai.github.io/2024/03/03/MISC/mojibake/Matplotlib%20doesn't%20support%20Chinese/index.html">
+<meta property="og:site_name" content="Enclave NO.0X7971">
+<meta property="og:description" content="问题描述Matplotlib无法识别中文字符的Unicode，调用plot.show()函数后，原中文字符处由方框代为显示。     *运行环境：Ubuntu 20.04 LTS，Python 3.10.，matplotlib 3.8.3 解决方法手动下载支持Unicode中文解码的字体，给出几个例子：     简体中文 SimSun.ttf 黑体 HeiTi.ttf 雅黑 Yahei.ttf …">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://yuqidai.github.io/images/misc/Garbled%20Characters.png">
+<meta property="og:image" content="https://yuqidai.github.io/images/misc/Chinese%20Charecters.png">
+<meta property="article:published_time" content="2024-03-02T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-07-28T16:18:51.251Z">
+<meta property="article:author" content="Dai Yuqi">
+<meta property="article:tag" content="MISC">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://yuqidai.github.io/images/misc/Garbled%20Characters.png">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon.ico" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
+          
+        
+    
+    <!-- title -->
+    <title>Matplotlib doesn&#39;t support Chinese</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- rss -->
+    
+    
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+<body>
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Recent</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Archives</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2024/03/08/risk%20management/CH2_InforSec%20Governance/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2024/03/01/risk%20management/CH1_Concepts&Background/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://yuqidai.github.io/2024/03/03/MISC/mojibake/Matplotlib%20doesn&#39;t%20support%20Chinese/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://yuqidai.github.io/2024/03/03/MISC/mojibake/Matplotlib%20doesn&#39;t%20support%20Chinese/&text=Matplotlib doesn&#39;t support Chinese"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://yuqidai.github.io/2024/03/03/MISC/mojibake/Matplotlib%20doesn&#39;t%20support%20Chinese/&title=Matplotlib doesn&#39;t support Chinese"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://yuqidai.github.io/2024/03/03/MISC/mojibake/Matplotlib%20doesn&#39;t%20support%20Chinese/&is_video=false&description=Matplotlib doesn&#39;t support Chinese"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Matplotlib doesn&#39;t support Chinese&body=Check out this article: https://yuqidai.github.io/2024/03/03/MISC/mojibake/Matplotlib%20doesn&#39;t%20support%20Chinese/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://yuqidai.github.io/2024/03/03/MISC/mojibake/Matplotlib%20doesn&#39;t%20support%20Chinese/&title=Matplotlib doesn&#39;t support Chinese"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://yuqidai.github.io/2024/03/03/MISC/mojibake/Matplotlib%20doesn&#39;t%20support%20Chinese/&title=Matplotlib doesn&#39;t support Chinese"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://yuqidai.github.io/2024/03/03/MISC/mojibake/Matplotlib%20doesn&#39;t%20support%20Chinese/&title=Matplotlib doesn&#39;t support Chinese"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://yuqidai.github.io/2024/03/03/MISC/mojibake/Matplotlib%20doesn&#39;t%20support%20Chinese/&title=Matplotlib doesn&#39;t support Chinese"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://yuqidai.github.io/2024/03/03/MISC/mojibake/Matplotlib%20doesn&#39;t%20support%20Chinese/&name=Matplotlib doesn&#39;t support Chinese&description="><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%97%AE%E9%A2%98%E6%8F%8F%E8%BF%B0"><span class="toc-number">1.</span> <span class="toc-text">问题描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95"><span class="toc-number">2.</span> <span class="toc-text">解决方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Referrence-Links"><span class="toc-number">3.</span> <span class="toc-text">Referrence Links</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index width mx-auto px2 my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Matplotlib doesn&#39;t support Chinese
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Enclave NO.0X7971</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2024-03-02T16:00:00.000Z" itemprop="datePublished">2024-03-03</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/MISC/" rel="tag">MISC</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>Matplotlib无法识别中文字符的Unicode，调用plot.show()函数后，原中文字符处由方框代为显示。   </p>
+<p><img src="/images/misc/Garbled%20Characters.png" alt="Garbled Characters"></p>
+<p>*<em>运行环境：Ubuntu 20.04 LTS，Python 3.10.<em>，matplotlib 3.8.3</em></em></p>
+<h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><p>手动下载支持Unicode中文解码的字体，给出几个例子：   </p>
+<ul>
+<li>简体中文 SimSun.ttf</li>
+<li>黑体 HeiTi.ttf</li>
+<li>雅黑 Yahei.ttf</li>
+<li>…</li>
+</ul>
+<p><em><strong>注意</strong></em>，如果使用<code>ttf-microsoft-installer</code>提供的<code>fc-match</code>指令，是无法下载上文描述的字体ttf文件的，为避免后续麻烦，最好手动下载。     </p>
+<ol>
+<li>下载完执行如下指令,将字体复制到你的matplotlib中：</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">path2ttf=$(find | grep -m 1 <span class="string">&quot;SIMSUN.ttf&quot;</span>)</span><br><span class="line">path2yourvenv=$(sudo find | grep <span class="string">&quot;matplotlib&quot;</span> | grep -m 1 <span class="string">&quot;mpl-data&quot;</span>)</span><br><span class="line"><span class="built_in">cp</span> <span class="variable">$path2ttf</span> <span class="variable">$path2yourvenv</span>/fonts/ttf/</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li><p>刷新你的<strong>matplotlib font manager cache</strong>，自行创建一个scritp.py并将下述命令键入并执行:   </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.font_manager</span><br><span class="line">matplotlib.font_manager._load_fontmanager(try_read_cache=<span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>matplotlib可以解释中文了</p>
+</li>
+</ol>
+<p><img src="/images/misc/Chinese%20Charecters.png" alt="Chinese Charecters"></p>
+<h2 id="Referrence-Links"><a href="#Referrence-Links" class="headerlink" title="Referrence Links"></a>Referrence Links</h2><ol>
+<li><p>Refresh matplotlib font manager cache   </p>
+<p> <a href="%22https://stackoverflow.com/questions/37920935/matplotlib-cant-find-font-installed-in-my-linux-machine%22">Stack Overflow Post</a></p>
+</li>
+<li><p>Download SimSun.ttf for free</p>
+<p> <a href="%22https://www.dafontfree.io/simsun-font/%22">SimSun For Free</a></p>
+</li>
+</ol>
+
+  </div>
+</article>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Recent</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Archives</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%97%AE%E9%A2%98%E6%8F%8F%E8%BF%B0"><span class="toc-number">1.</span> <span class="toc-text">问题描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95"><span class="toc-number">2.</span> <span class="toc-text">解决方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Referrence-Links"><span class="toc-number">3.</span> <span class="toc-text">Referrence Links</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://yuqidai.github.io/2024/03/03/MISC/mojibake/Matplotlib%20doesn&#39;t%20support%20Chinese/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://yuqidai.github.io/2024/03/03/MISC/mojibake/Matplotlib%20doesn&#39;t%20support%20Chinese/&text=Matplotlib doesn&#39;t support Chinese"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://yuqidai.github.io/2024/03/03/MISC/mojibake/Matplotlib%20doesn&#39;t%20support%20Chinese/&title=Matplotlib doesn&#39;t support Chinese"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://yuqidai.github.io/2024/03/03/MISC/mojibake/Matplotlib%20doesn&#39;t%20support%20Chinese/&is_video=false&description=Matplotlib doesn&#39;t support Chinese"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Matplotlib doesn&#39;t support Chinese&body=Check out this article: https://yuqidai.github.io/2024/03/03/MISC/mojibake/Matplotlib%20doesn&#39;t%20support%20Chinese/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://yuqidai.github.io/2024/03/03/MISC/mojibake/Matplotlib%20doesn&#39;t%20support%20Chinese/&title=Matplotlib doesn&#39;t support Chinese"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://yuqidai.github.io/2024/03/03/MISC/mojibake/Matplotlib%20doesn&#39;t%20support%20Chinese/&title=Matplotlib doesn&#39;t support Chinese"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://yuqidai.github.io/2024/03/03/MISC/mojibake/Matplotlib%20doesn&#39;t%20support%20Chinese/&title=Matplotlib doesn&#39;t support Chinese"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://yuqidai.github.io/2024/03/03/MISC/mojibake/Matplotlib%20doesn&#39;t%20support%20Chinese/&title=Matplotlib doesn&#39;t support Chinese"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://yuqidai.github.io/2024/03/03/MISC/mojibake/Matplotlib%20doesn&#39;t%20support%20Chinese/&name=Matplotlib doesn&#39;t support Chinese&description="><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-mid">
+    Copyright &copy; 2024 Dai Yuqi ❤️ updated on 20th July 2024.
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+
+
+<link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
+
+
+<!-- jquery -->
+
+<script src="/lib/jquery/jquery.min.js"></script>
+
+
+<script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+
+
+
+

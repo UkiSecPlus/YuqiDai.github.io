@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="1. Terminology   Containment Limiting the extent of the incident and preventing it from spreading or causing further damage to the organization. It’s about isolating affected systems to ensure the inc">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Forensic Chapter 2 - Post-Incident Activities">
+<meta property="og:url" content="https://yuqidai.github.io/2024/01/08/forensic/forensic_CH2_Post-Incident%20Activities/index.html">
+<meta property="og:site_name" content="Enclave NO.0X7971">
+<meta property="og:description" content="1. Terminology   Containment Limiting the extent of the incident and preventing it from spreading or causing further damage to the organization. It’s about isolating affected systems to ensure the inc">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-01-07T16:00:01.000Z">
+<meta property="article:modified_time" content="2024-07-28T16:18:13.507Z">
+<meta property="article:author" content="Dai Yuqi">
+<meta property="article:tag" content="forensic">
+<meta name="twitter:card" content="summary">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon.ico" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
+          
+        
+    
+    <!-- title -->
+    <title>Forensic Chapter 2 - Post-Incident Activities</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- rss -->
+    
+    
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+<body>
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Recent</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Archives</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2024/01/15/forensic/forensic_CH3_Computer%20Forensic/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2024/01/01/forensic/forensic_CH1_Preparing%20for%20Incidents/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://yuqidai.github.io/2024/01/08/forensic/forensic_CH2_Post-Incident%20Activities/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://yuqidai.github.io/2024/01/08/forensic/forensic_CH2_Post-Incident%20Activities/&text=Forensic Chapter 2 - Post-Incident Activities"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://yuqidai.github.io/2024/01/08/forensic/forensic_CH2_Post-Incident%20Activities/&title=Forensic Chapter 2 - Post-Incident Activities"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://yuqidai.github.io/2024/01/08/forensic/forensic_CH2_Post-Incident%20Activities/&is_video=false&description=Forensic Chapter 2 - Post-Incident Activities"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Forensic Chapter 2 - Post-Incident Activities&body=Check out this article: https://yuqidai.github.io/2024/01/08/forensic/forensic_CH2_Post-Incident%20Activities/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://yuqidai.github.io/2024/01/08/forensic/forensic_CH2_Post-Incident%20Activities/&title=Forensic Chapter 2 - Post-Incident Activities"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://yuqidai.github.io/2024/01/08/forensic/forensic_CH2_Post-Incident%20Activities/&title=Forensic Chapter 2 - Post-Incident Activities"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://yuqidai.github.io/2024/01/08/forensic/forensic_CH2_Post-Incident%20Activities/&title=Forensic Chapter 2 - Post-Incident Activities"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://yuqidai.github.io/2024/01/08/forensic/forensic_CH2_Post-Incident%20Activities/&title=Forensic Chapter 2 - Post-Incident Activities"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://yuqidai.github.io/2024/01/08/forensic/forensic_CH2_Post-Incident%20Activities/&name=Forensic Chapter 2 - Post-Incident Activities&description="><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Terminology"><span class="toc-number">1.</span> <span class="toc-text">1. Terminology</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Containment-Strategy"><span class="toc-number">2.</span> <span class="toc-text">2. Containment Strategy</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Evidence-Gathering"><span class="toc-number">3.</span> <span class="toc-text">3. Evidence Gathering</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Eradication"><span class="toc-number">4.</span> <span class="toc-text">4. Eradication</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-Post-Incident-Activity"><span class="toc-number">5.</span> <span class="toc-text">5. Post-Incident Activity</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index width mx-auto px2 my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Forensic Chapter 2 - Post-Incident Activities
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Enclave NO.0X7971</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2024-01-07T16:00:01.000Z" itemprop="datePublished">2024-01-08</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/forensic/" rel="tag">forensic</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="1-Terminology"><a href="#1-Terminology" class="headerlink" title="1. Terminology"></a>1. Terminology</h2><table>
+<thead>
+<tr>
+<th>Containment</th>
+<th>Limiting the extent of the incident and preventing it from spreading or causing further damage to the organization. It’s about isolating affected systems to ensure the incident doesn’t escalate.</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Eradication</td>
+<td>The process of removing the threat from the organization’s environment. This includes identifying and eliminating the root cause of the incident.</td>
+</tr>
+<tr>
+<td>Recovery</td>
+<td>The process of restoring and returning affected systems and devices back to their fully operational states. It includes ensuring that no threats remain and verifying the integrity of the systems.</td>
+</tr>
+</tbody></table>
+<h2 id="2-Containment-Strategy"><a href="#2-Containment-Strategy" class="headerlink" title="2. Containment Strategy"></a>2. Containment Strategy</h2><ol>
+<li>Potential damage</li>
+<li>Need for evidence preservation</li>
+<li>Service availability</li>
+<li>Time and resource</li>
+<li>Effectiveness of the strategy</li>
+<li>Duration of the solution</li>
+</ol>
+<p>Sample: Honey Pot</p>
+<h2 id="3-Evidence-Gathering"><a href="#3-Evidence-Gathering" class="headerlink" title="3. Evidence Gathering"></a>3. Evidence Gathering</h2><ol>
+<li>Use Pre-defined templates</li>
+<li>Keep incident response system isolated form affected network and system.</li>
+<li>Reconcile the evidences</li>
+<li>Identify missteps</li>
+<li>Idnetify attacking hosts</li>
+</ol>
+<h2 id="4-Eradication"><a href="#4-Eradication" class="headerlink" title="4. Eradication"></a>4. Eradication</h2><ol>
+<li>Undoing Threat actors’ actions</li>
+<li>Restoring to known good state</li>
+<li>Removing Threat actors’prsence &amp; backdoors</li>
+<li>Performing security testing</li>
+<li>Dealing with unauthorised transactions</li>
+<li>Revoking and renewing access credentials</li>
+</ol>
+<h2 id="5-Post-Incident-Activity"><a href="#5-Post-Incident-Activity" class="headerlink" title="5. Post-Incident Activity"></a>5. Post-Incident Activity</h2><p>Often most under-rated activity in the lifecycle   </p>
+<ol>
+<li>Identify lesson learnt</li>
+<li>Data collection during incidents</li>
+<li>Evidence retention</li>
+<li>Incident handling checklist</li>
+</ol>
+
+  </div>
+</article>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Recent</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Archives</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Terminology"><span class="toc-number">1.</span> <span class="toc-text">1. Terminology</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Containment-Strategy"><span class="toc-number">2.</span> <span class="toc-text">2. Containment Strategy</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Evidence-Gathering"><span class="toc-number">3.</span> <span class="toc-text">3. Evidence Gathering</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Eradication"><span class="toc-number">4.</span> <span class="toc-text">4. Eradication</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-Post-Incident-Activity"><span class="toc-number">5.</span> <span class="toc-text">5. Post-Incident Activity</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://yuqidai.github.io/2024/01/08/forensic/forensic_CH2_Post-Incident%20Activities/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://yuqidai.github.io/2024/01/08/forensic/forensic_CH2_Post-Incident%20Activities/&text=Forensic Chapter 2 - Post-Incident Activities"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://yuqidai.github.io/2024/01/08/forensic/forensic_CH2_Post-Incident%20Activities/&title=Forensic Chapter 2 - Post-Incident Activities"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://yuqidai.github.io/2024/01/08/forensic/forensic_CH2_Post-Incident%20Activities/&is_video=false&description=Forensic Chapter 2 - Post-Incident Activities"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Forensic Chapter 2 - Post-Incident Activities&body=Check out this article: https://yuqidai.github.io/2024/01/08/forensic/forensic_CH2_Post-Incident%20Activities/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://yuqidai.github.io/2024/01/08/forensic/forensic_CH2_Post-Incident%20Activities/&title=Forensic Chapter 2 - Post-Incident Activities"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://yuqidai.github.io/2024/01/08/forensic/forensic_CH2_Post-Incident%20Activities/&title=Forensic Chapter 2 - Post-Incident Activities"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://yuqidai.github.io/2024/01/08/forensic/forensic_CH2_Post-Incident%20Activities/&title=Forensic Chapter 2 - Post-Incident Activities"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://yuqidai.github.io/2024/01/08/forensic/forensic_CH2_Post-Incident%20Activities/&title=Forensic Chapter 2 - Post-Incident Activities"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://yuqidai.github.io/2024/01/08/forensic/forensic_CH2_Post-Incident%20Activities/&name=Forensic Chapter 2 - Post-Incident Activities&description="><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-mid">
+    Copyright &copy; 2024 Dai Yuqi ❤️ updated on 20th July 2024.
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+
+
+<link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
+
+
+<!-- jquery -->
+
+<script src="/lib/jquery/jquery.min.js"></script>
+
+
+<script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+
+
+
+

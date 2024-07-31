@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="1. Difference between Event and Incident   Event A cybersecurity event is any observable occurrence in a network or system.    Incident A specific type of event that actually harms or represents a rea">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Forensic Chapter 1 - Preparing for Incidents">
+<meta property="og:url" content="https://yuqidai.github.io/2024/01/01/forensic/forensic_CH1_Preparing%20for%20Incidents/index.html">
+<meta property="og:site_name" content="Enclave NO.0X7971">
+<meta property="og:description" content="1. Difference between Event and Incident   Event A cybersecurity event is any observable occurrence in a network or system.    Incident A specific type of event that actually harms or represents a rea">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://yuqidai.github.io/images/forensic_Resource4CH1/Team%20Types.png">
+<meta property="og:image" content="https://yuqidai.github.io/images/forensic_Resource4CH1/Incident%20Responders%20in%20different%20periods.png">
+<meta property="og:image" content="https://yuqidai.github.io/images/forensic_Resource4CH1/A%20Recommendation%20Guideline.png">
+<meta property="og:image" content="https://yuqidai.github.io/images/forensic_Resource4CH1/Lifecycle%20.png">
+<meta property="article:published_time" content="2023-12-31T16:00:01.000Z">
+<meta property="article:modified_time" content="2024-07-28T16:18:08.439Z">
+<meta property="article:author" content="Dai Yuqi">
+<meta property="article:tag" content="forensic">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://yuqidai.github.io/images/forensic_Resource4CH1/Team%20Types.png">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon.ico" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
+          
+        
+    
+    <!-- title -->
+    <title>Forensic Chapter 1 - Preparing for Incidents</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- rss -->
+    
+    
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+<body>
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Recent</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Archives</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2024/01/08/forensic/forensic_CH2_Post-Incident%20Activities/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2023/09/03/SQL/SQLi/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://yuqidai.github.io/2024/01/01/forensic/forensic_CH1_Preparing%20for%20Incidents/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://yuqidai.github.io/2024/01/01/forensic/forensic_CH1_Preparing%20for%20Incidents/&text=Forensic Chapter 1 - Preparing for Incidents"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://yuqidai.github.io/2024/01/01/forensic/forensic_CH1_Preparing%20for%20Incidents/&title=Forensic Chapter 1 - Preparing for Incidents"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://yuqidai.github.io/2024/01/01/forensic/forensic_CH1_Preparing%20for%20Incidents/&is_video=false&description=Forensic Chapter 1 - Preparing for Incidents"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Forensic Chapter 1 - Preparing for Incidents&body=Check out this article: https://yuqidai.github.io/2024/01/01/forensic/forensic_CH1_Preparing%20for%20Incidents/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://yuqidai.github.io/2024/01/01/forensic/forensic_CH1_Preparing%20for%20Incidents/&title=Forensic Chapter 1 - Preparing for Incidents"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://yuqidai.github.io/2024/01/01/forensic/forensic_CH1_Preparing%20for%20Incidents/&title=Forensic Chapter 1 - Preparing for Incidents"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://yuqidai.github.io/2024/01/01/forensic/forensic_CH1_Preparing%20for%20Incidents/&title=Forensic Chapter 1 - Preparing for Incidents"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://yuqidai.github.io/2024/01/01/forensic/forensic_CH1_Preparing%20for%20Incidents/&title=Forensic Chapter 1 - Preparing for Incidents"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://yuqidai.github.io/2024/01/01/forensic/forensic_CH1_Preparing%20for%20Incidents/&name=Forensic Chapter 1 - Preparing for Incidents&description="><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Difference-between-Event-and-Incident"><span class="toc-number">1.</span> <span class="toc-text">1. Difference between Event and Incident</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Cyber-Incidents-Response"><span class="toc-number">2.</span> <span class="toc-text">2. Cyber Incidents Response</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Incident-Response-Lifecycle"><span class="toc-number">3.</span> <span class="toc-text">3. Incident Response Lifecycle</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index width mx-auto px2 my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Forensic Chapter 1 - Preparing for Incidents
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Enclave NO.0X7971</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2023-12-31T16:00:01.000Z" itemprop="datePublished">2024-01-01</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/forensic/" rel="tag">forensic</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="1-Difference-between-Event-and-Incident"><a href="#1-Difference-between-Event-and-Incident" class="headerlink" title="1. Difference between Event and Incident"></a>1. Difference between Event and Incident</h2><table>
+<thead>
+<tr>
+<th>Event</th>
+<th>A cybersecurity event is any observable occurrence in a network or system.</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Incident</td>
+<td>A specific type of event that actually harms or represents a real threat to the integrity, confidentiality, or availability of data or systems.</td>
+</tr>
+</tbody></table>
+<p>For an event, we need to:    </p>
+<ol>
+<li>Obeservation: To see if the event is a potential incident or not.</li>
+<li>Take actions: Monitor the situation, review logs and so on.</li>
+<li>Get outcome: Give a conclusion based on the actions.</li>
+</ol>
+<h2 id="2-Cyber-Incidents-Response"><a href="#2-Cyber-Incidents-Response" class="headerlink" title="2. Cyber Incidents Response"></a>2. Cyber Incidents Response</h2><ol>
+<li><p>Terms </p>
+<table>
+<thead>
+<tr>
+<th>Policy</th>
+<th>Why we need to do it?</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Standard</td>
+<td>What is required?</td>
+</tr>
+<tr>
+<td>Procedure</td>
+<td>How to do it?</td>
+</tr>
+<tr>
+<td>Guideline</td>
+<td>Customized procedure</td>
+</tr>
+</tbody></table>
+</li>
+<li><p>A sample procedure of CIR    </p>
+<ol>
+<li>Rapid Containment</li>
+<li>Reduce Damage and Cost</li>
+<li>Legal and Regulatory Compliance</li>
+<li>Maintain Trust and Reputation</li>
+<li>Learning and Improvement</li>
+<li>Ensuring Business Continuity</li>
+</ol>
+</li>
+<li><p>Information Sharing<br>We need to inform some entities when incidents happenning.   </p>
+<ol>
+<li><p>Idnerify Key Stakeholders</p>
+<ol>
+<li>Internal: within the company, group-level</li>
+<li>supply chain</li>
+<li>regulators</li>
+<li>law enforcements</li>
+<li>within an dcross-sectors</li>
+</ol>
+</li>
+<li><p>Manage Media Interaction</p>
+<ol>
+<li>designated spokesperson</li>
+<li>timely updates</li>
+<li>flow of updates</li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p>Types of Cyber Security Incidents Response Team (CSIRT)</p>
+<ol>
+<li><p>Security Team</p>
+</li>
+<li><p>Centralized CSIRT</p>
+</li>
+<li><p>Distributed CSIRT</p>
+</li>
+<li><p>Extemalized CSIRT</p>
+</li>
+<li><p>Coordinating CSIRT</p>
+</li>
+<li><p>Hybrid CSIRT</p>
+<p> <img src="/images/forensic_Resource4CH1/Team%20Types.png" alt="Team Types"></p>
+</li>
+</ol>
+</li>
+<li><p>Incident Responders in different periods</p>
+<p> <img src="/images/forensic_Resource4CH1/Incident%20Responders%20in%20different%20periods.png" alt="Incident Responders in different periods"></p>
+</li>
+<li><p>A Recommendation Guideline</p>
+<p> <img src="/images/forensic_Resource4CH1/A%20Recommendation%20Guideline.png" alt="A Recommendation Guideline"></p>
+</li>
+</ol>
+<h2 id="3-Incident-Response-Lifecycle"><a href="#3-Incident-Response-Lifecycle" class="headerlink" title="3. Incident Response Lifecycle"></a>3. Incident Response Lifecycle</h2><ol>
+<li><p>Overall Lifecycle   </p>
+<ol>
+<li><p>Preparation</p>
+</li>
+<li><p>Detection &amp; Analysis</p>
+</li>
+<li><p>Containment, Eradication and Recovery</p>
+</li>
+<li><p>Post-incident Activity</p>
+<p> <img src="/images/forensic_Resource4CH1/Lifecycle%20.png" alt="Lifecycle"></p>
+</li>
+</ol>
+</li>
+<li><p>Preparation (Documentation)   </p>
+<ol>
+<li>Asset lists   <ol>
+<li>Cloud Assets</li>
+<li>Business and System owners</li>
+</ol>
+</li>
+<li>Others   <ol>
+<li>Network diagram</li>
+<li>Baselines</li>
+</ol>
+</li>
+<li>Facility   <ol>
+<li>Secure storage facility</li>
+<li>Designated War room</li>
+</ol>
+</li>
+<li>Communication   <ol>
+<li>Up-to-date contact information</li>
+<li>Mobile phones</li>
+</ol>
+</li>
+<li>Information sharing platform<ol>
+<li>MISP -&gt; Malware information sharing platform</li>
+<li>TheHive</li>
+</ol>
+</li>
+<li>Computers</li>
+<li>Softwares</li>
+</ol>
+</li>
+<li><p>Detction &amp; Analysis   </p>
+<ol>
+<li>Know the attack vectors</li>
+<li>Analysis</li>
+<li>Documentation</li>
+<li>Prioritization</li>
+<li>Notification</li>
+</ol>
+</li>
+</ol>
+
+  </div>
+</article>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Recent</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Archives</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Difference-between-Event-and-Incident"><span class="toc-number">1.</span> <span class="toc-text">1. Difference between Event and Incident</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Cyber-Incidents-Response"><span class="toc-number">2.</span> <span class="toc-text">2. Cyber Incidents Response</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Incident-Response-Lifecycle"><span class="toc-number">3.</span> <span class="toc-text">3. Incident Response Lifecycle</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://yuqidai.github.io/2024/01/01/forensic/forensic_CH1_Preparing%20for%20Incidents/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://yuqidai.github.io/2024/01/01/forensic/forensic_CH1_Preparing%20for%20Incidents/&text=Forensic Chapter 1 - Preparing for Incidents"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://yuqidai.github.io/2024/01/01/forensic/forensic_CH1_Preparing%20for%20Incidents/&title=Forensic Chapter 1 - Preparing for Incidents"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://yuqidai.github.io/2024/01/01/forensic/forensic_CH1_Preparing%20for%20Incidents/&is_video=false&description=Forensic Chapter 1 - Preparing for Incidents"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Forensic Chapter 1 - Preparing for Incidents&body=Check out this article: https://yuqidai.github.io/2024/01/01/forensic/forensic_CH1_Preparing%20for%20Incidents/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://yuqidai.github.io/2024/01/01/forensic/forensic_CH1_Preparing%20for%20Incidents/&title=Forensic Chapter 1 - Preparing for Incidents"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://yuqidai.github.io/2024/01/01/forensic/forensic_CH1_Preparing%20for%20Incidents/&title=Forensic Chapter 1 - Preparing for Incidents"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://yuqidai.github.io/2024/01/01/forensic/forensic_CH1_Preparing%20for%20Incidents/&title=Forensic Chapter 1 - Preparing for Incidents"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://yuqidai.github.io/2024/01/01/forensic/forensic_CH1_Preparing%20for%20Incidents/&title=Forensic Chapter 1 - Preparing for Incidents"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://yuqidai.github.io/2024/01/01/forensic/forensic_CH1_Preparing%20for%20Incidents/&name=Forensic Chapter 1 - Preparing for Incidents&description="><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-mid">
+    Copyright &copy; 2024 Dai Yuqi ❤️ updated on 20th July 2024.
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+
+
+<link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
+
+
+<!-- jquery -->
+
+<script src="/lib/jquery/jquery.min.js"></script>
+
+
+<script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+
+
+
+

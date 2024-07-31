@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="1. Guiding principles Functional Security –&gt; What should the system do?  Control:  to prevent the exploitation of a system’s vulnerabilities   12345678910Classification according to the purpose of">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Risk Management Chapter 2 - Information Security Governance">
+<meta property="og:url" content="https://yuqidai.github.io/2024/03/08/risk%20management/CH2_InforSec%20Governance/index.html">
+<meta property="og:site_name" content="Enclave NO.0X7971">
+<meta property="og:description" content="1. Guiding principles Functional Security –&gt; What should the system do?  Control:  to prevent the exploitation of a system’s vulnerabilities   12345678910Classification according to the purpose of">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-03-07T16:00:01.000Z">
+<meta property="article:modified_time" content="2024-07-28T16:19:18.351Z">
+<meta property="article:author" content="Dai Yuqi">
+<meta property="article:tag" content="risk management">
+<meta name="twitter:card" content="summary">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon.ico" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
+          
+        
+    
+    <!-- title -->
+    <title>Risk Management Chapter 2 - Information Security Governance</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- rss -->
+    
+    
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+<body>
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Recent</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Archives</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2024/03/15/risk%20management/CH3_Risk%20Analysis&Assessment/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2024/03/03/MISC/mojibake/Matplotlib%20doesn't%20support%20Chinese/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://yuqidai.github.io/2024/03/08/risk%20management/CH2_InforSec%20Governance/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://yuqidai.github.io/2024/03/08/risk%20management/CH2_InforSec%20Governance/&text=Risk Management Chapter 2 - Information Security Governance"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://yuqidai.github.io/2024/03/08/risk%20management/CH2_InforSec%20Governance/&title=Risk Management Chapter 2 - Information Security Governance"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://yuqidai.github.io/2024/03/08/risk%20management/CH2_InforSec%20Governance/&is_video=false&description=Risk Management Chapter 2 - Information Security Governance"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Risk Management Chapter 2 - Information Security Governance&body=Check out this article: https://yuqidai.github.io/2024/03/08/risk%20management/CH2_InforSec%20Governance/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://yuqidai.github.io/2024/03/08/risk%20management/CH2_InforSec%20Governance/&title=Risk Management Chapter 2 - Information Security Governance"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://yuqidai.github.io/2024/03/08/risk%20management/CH2_InforSec%20Governance/&title=Risk Management Chapter 2 - Information Security Governance"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://yuqidai.github.io/2024/03/08/risk%20management/CH2_InforSec%20Governance/&title=Risk Management Chapter 2 - Information Security Governance"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://yuqidai.github.io/2024/03/08/risk%20management/CH2_InforSec%20Governance/&title=Risk Management Chapter 2 - Information Security Governance"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://yuqidai.github.io/2024/03/08/risk%20management/CH2_InforSec%20Governance/&name=Risk Management Chapter 2 - Information Security Governance&description="><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Guiding-principles"><span class="toc-number">1.</span> <span class="toc-text">1. Guiding principles</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Standards-and-guidelines"><span class="toc-number">2.</span> <span class="toc-text">2. Standards and guidelines</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Laws-and-regulations"><span class="toc-number">3.</span> <span class="toc-text">3. Laws and regulations</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Security-Governance"><span class="toc-number">4.</span> <span class="toc-text">4. Security Governance</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index width mx-auto px2 my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Risk Management Chapter 2 - Information Security Governance
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Enclave NO.0X7971</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2024-03-07T16:00:01.000Z" itemprop="datePublished">2024-03-08</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/risk-management/" rel="tag">risk management</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="1-Guiding-principles"><a href="#1-Guiding-principles" class="headerlink" title="1. Guiding principles"></a>1. Guiding principles</h2><ol>
+<li><p>Functional Security –&gt; What should the system do?</p>
+<ol>
+<li><p>Control:  to prevent the exploitation of a system’s vulnerabilities </p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Classification according to the purpose of controls:</span><br><span class="line">- Preventitive: authentication based access</span><br><span class="line">- Detective: intrusion detection system</span><br><span class="line">- Corrective: restore data from back-up</span><br><span class="line"></span><br><span class="line">Classification according to the nature of controls:</span><br><span class="line">- Physical: who can access the data center</span><br><span class="line">- Procedural: incident response process</span><br><span class="line">- Technical: user authentication</span><br><span class="line">- Legal &amp; regulatory/compliance: privacy laws</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Defense in depth &amp; layered security:<br> Defense in depth requires multi-layered defense, but multi-layered defense may not necessarily provide defense in depth.</p>
+<table>
+<thead>
+<tr>
+<th>Terminology</th>
+<th>Definition</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Defense in depth</td>
+<td>Multiple defense methods dealing with multiple attack vectors</td>
+</tr>
+<tr>
+<td>Layered security</td>
+<td>Could be many layers defense methods in many attack vectors, and also could be defense methods in one attack vector</td>
+</tr>
+</tbody></table>
+</li>
+<li><p>Need-to-know principle: The need-to-know principle describes a security objective to limit access to confidential information to what is absolutely necessary. </p>
+</li>
+<li><p>Least privilege access: same as Need-to-know principle.</p>
+</li>
+<li><p>Secure by design.</p>
+</li>
+<li><p>Zero trust.</p>
+</li>
+</ol>
+</li>
+<li><p>Security Assurance –&gt; How to ensure the functions are achieved?</p>
+</li>
+</ol>
+<h2 id="2-Standards-and-guidelines"><a href="#2-Standards-and-guidelines" class="headerlink" title="2. Standards and guidelines"></a>2. Standards and guidelines</h2><ol>
+<li><p>Standards and guidelines are <em><strong>actionalbe</strong></em> compare with principles. In another word, priciple is <em><strong>abstract</strong></em>, standard and guidelines are <em><strong>practical</strong></em>.   </p>
+</li>
+<li><p><em><strong>Why</strong></em> we need standards and guidelines?<br>To eradicate ambiguity. Different understanding in different minds, if you only give people principles, they might achieve it by multiple means, but some means are unsecure, so we need to articulate specifically which means are allowed to use.</p>
+</li>
+<li><ol>
+<li><em><strong>Compliance</strong></em>:  A product&#x2F;organization&#x2F;etc. adhering to the requirements of a standard.   </li>
+<li><em><strong>Certified</strong></em>:  Compliance vetted by an authoritative (and competent) entity.</li>
+</ol>
+</li>
+<li><ol>
+<li><p><em><strong>ISO&#x2F;IEC 27000</strong></em>: Information security management systems (ISMS) family of standards: ISO27k.</p>
+</li>
+<li><p><em><strong>Common Criteria</strong></em>: basis for evaluation of security properties of IT products. The standards used to make sure the assurance of security.</p>
+</li>
+<li><p>shortcomings of <em><strong>CC</strong></em>:</p>
+<ol>
+<li>It’s a targetd evaluation.  </li>
+<li>It takes a lot of time and costs a lot of money.</li>
+<li>The standards may be out-of-date.</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<h2 id="3-Laws-and-regulations"><a href="#3-Laws-and-regulations" class="headerlink" title="3. Laws and regulations"></a>3. Laws and regulations</h2><ol>
+<li><p>Laws and regulations in Singapore.    </p>
+<ol>
+<li><p><em><strong>Data backup regulation</strong></em>:</p>
+<ol>
+<li>update backups regularly.</li>
+<li>encrypt the data off-site.</li>
+</ol>
+</li>
+<li><p><em><strong>Internal security</strong></em>:   </p>
+<ol>
+<li>Never alone ( Need to have at least two people involved in a incident. )</li>
+<li>Segregation of duties. </li>
+<li>Access control.</li>
+</ol>
+</li>
+<li><p><em><strong>Personal Data Protection Act</strong></em>:<br> Develop and implement policies and practices to protect personal data. Designate at least one individual, known as the data protection officer (DPO), to oversee the data.</p>
+</li>
+</ol>
+</li>
+<li><p>Laws and regulations in EU.</p>
+<ol>
+<li><p>General Data Protection Regulation (GDPR)   </p>
+<ol>
+<li>Revenue based fine.</li>
+<li>Data breach notification.</li>
+<li>Data protection officer.</li>
+</ol>
+</li>
+<li><p>Right to be forgotten.</p>
+</li>
+</ol>
+</li>
+<li><p>Laws and regulations in US.</p>
+<ol>
+<li><p>SOX -&gt; Sarbanes Oxley Act of 2002.   </p>
+<p> CEO and CFO must personally certify that financial reports are accurate and complete. They must also assess and report on the effectiveness of internal controls around financial reporting.</p>
+</li>
+<li><p>FISMA -&gt; Federal Information Security Management Act of 2002.</p>
+</li>
+<li><p>HIPPA -&gt; Health Insurance Portability and Accountability Act.</p>
+</li>
+</ol>
+</li>
+</ol>
+<h2 id="4-Security-Governance"><a href="#4-Security-Governance" class="headerlink" title="4. Security Governance"></a>4. Security Governance</h2><ol>
+<li><p>GRC -&gt; the umbrella term used to cover an organisation’s three approches across three fields.</p>
+<ol>
+<li><strong>Governance</strong>: The management approach used by the senior executive</li>
+</ol>
+</li>
+</ol>
+<p>to direct and control an organization.<br>    2. <strong>Risk Management</strong>: Process to identify, analyze and when necessary act, to <code>mitigate risks</code> that otherwise would affect the business objectives.<br>    3. <strong>Compliance</strong>: </p>
+
+  </div>
+</article>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Recent</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Archives</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Guiding-principles"><span class="toc-number">1.</span> <span class="toc-text">1. Guiding principles</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Standards-and-guidelines"><span class="toc-number">2.</span> <span class="toc-text">2. Standards and guidelines</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Laws-and-regulations"><span class="toc-number">3.</span> <span class="toc-text">3. Laws and regulations</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Security-Governance"><span class="toc-number">4.</span> <span class="toc-text">4. Security Governance</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://yuqidai.github.io/2024/03/08/risk%20management/CH2_InforSec%20Governance/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://yuqidai.github.io/2024/03/08/risk%20management/CH2_InforSec%20Governance/&text=Risk Management Chapter 2 - Information Security Governance"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://yuqidai.github.io/2024/03/08/risk%20management/CH2_InforSec%20Governance/&title=Risk Management Chapter 2 - Information Security Governance"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://yuqidai.github.io/2024/03/08/risk%20management/CH2_InforSec%20Governance/&is_video=false&description=Risk Management Chapter 2 - Information Security Governance"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Risk Management Chapter 2 - Information Security Governance&body=Check out this article: https://yuqidai.github.io/2024/03/08/risk%20management/CH2_InforSec%20Governance/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://yuqidai.github.io/2024/03/08/risk%20management/CH2_InforSec%20Governance/&title=Risk Management Chapter 2 - Information Security Governance"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://yuqidai.github.io/2024/03/08/risk%20management/CH2_InforSec%20Governance/&title=Risk Management Chapter 2 - Information Security Governance"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://yuqidai.github.io/2024/03/08/risk%20management/CH2_InforSec%20Governance/&title=Risk Management Chapter 2 - Information Security Governance"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://yuqidai.github.io/2024/03/08/risk%20management/CH2_InforSec%20Governance/&title=Risk Management Chapter 2 - Information Security Governance"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://yuqidai.github.io/2024/03/08/risk%20management/CH2_InforSec%20Governance/&name=Risk Management Chapter 2 - Information Security Governance&description="><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-mid">
+    Copyright &copy; 2024 Dai Yuqi ❤️ updated on 20th July 2024.
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+
+
+<link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
+
+
+<!-- jquery -->
+
+<script src="/lib/jquery/jquery.min.js"></script>
+
+
+<script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+
+
+
+

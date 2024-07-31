@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="1. Comparation Between Mobile Device and PC    iphone Mac    Computing power &#x3D; &#x3D;   Storage &lt; a bit larger   Ram &#x3D; &#x3D;   Connectivity &gt; Need a WIFI or Ethernet   Power consumpti">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Forensic Chapter 6 - Smartphone Forensic">
+<meta property="og:url" content="https://yuqidai.github.io/2024/02/05/forensic/forensic_CH6_Smartphone%20Forensic/index.html">
+<meta property="og:site_name" content="Enclave NO.0X7971">
+<meta property="og:description" content="1. Comparation Between Mobile Device and PC    iphone Mac    Computing power &#x3D; &#x3D;   Storage &lt; a bit larger   Ram &#x3D; &#x3D;   Connectivity &gt; Need a WIFI or Ethernet   Power consumpti">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://yuqidai.github.io/images/forensic_Resource4CH6/Extraction%20Strategy.png">
+<meta property="og:image" content="https://yuqidai.github.io/images/forensic_Resource4CH6/FSofAndroid.png">
+<meta property="og:image" content="https://yuqidai.github.io/images/forensic_Resource4CH6/IOS.png">
+<meta property="og:image" content="https://yuqidai.github.io/images/forensic_Resource4CH6/apk.png">
+<meta property="og:image" content="https://yuqidai.github.io/images/forensic_Resource4CH6/tools.png">
+<meta property="article:published_time" content="2024-02-04T16:00:01.000Z">
+<meta property="article:modified_time" content="2024-07-28T16:18:38.595Z">
+<meta property="article:author" content="Dai Yuqi">
+<meta property="article:tag" content="forensic">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://yuqidai.github.io/images/forensic_Resource4CH6/Extraction%20Strategy.png">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon.ico" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
+          
+        
+    
+    <!-- title -->
+    <title>Forensic Chapter 6 - Smartphone Forensic</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- rss -->
+    
+    
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+<body>
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Recent</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Archives</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2024/02/12/forensic/forensic_CH7_Cloud%20Forensic/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2024/01/29/forensic/forensic_CH5_Network%20Forensic/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://yuqidai.github.io/2024/02/05/forensic/forensic_CH6_Smartphone%20Forensic/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://yuqidai.github.io/2024/02/05/forensic/forensic_CH6_Smartphone%20Forensic/&text=Forensic Chapter 6 - Smartphone Forensic"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://yuqidai.github.io/2024/02/05/forensic/forensic_CH6_Smartphone%20Forensic/&title=Forensic Chapter 6 - Smartphone Forensic"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://yuqidai.github.io/2024/02/05/forensic/forensic_CH6_Smartphone%20Forensic/&is_video=false&description=Forensic Chapter 6 - Smartphone Forensic"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Forensic Chapter 6 - Smartphone Forensic&body=Check out this article: https://yuqidai.github.io/2024/02/05/forensic/forensic_CH6_Smartphone%20Forensic/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://yuqidai.github.io/2024/02/05/forensic/forensic_CH6_Smartphone%20Forensic/&title=Forensic Chapter 6 - Smartphone Forensic"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://yuqidai.github.io/2024/02/05/forensic/forensic_CH6_Smartphone%20Forensic/&title=Forensic Chapter 6 - Smartphone Forensic"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://yuqidai.github.io/2024/02/05/forensic/forensic_CH6_Smartphone%20Forensic/&title=Forensic Chapter 6 - Smartphone Forensic"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://yuqidai.github.io/2024/02/05/forensic/forensic_CH6_Smartphone%20Forensic/&title=Forensic Chapter 6 - Smartphone Forensic"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://yuqidai.github.io/2024/02/05/forensic/forensic_CH6_Smartphone%20Forensic/&name=Forensic Chapter 6 - Smartphone Forensic&description="><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Comparation-Between-Mobile-Device-and-PC"><span class="toc-number">1.</span> <span class="toc-text">1. Comparation Between Mobile Device and PC</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Acquisition-Types"><span class="toc-number">2.</span> <span class="toc-text">2. Acquisition Types</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Data-Extraction-Types"><span class="toc-number">3.</span> <span class="toc-text">3. Data Extraction Types</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Privilege-Gaining-Techniques"><span class="toc-number">4.</span> <span class="toc-text">4. Privilege Gaining Techniques</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-Forensic-Part"><span class="toc-number">5.</span> <span class="toc-text">5. Forensic Part</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index width mx-auto px2 my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Forensic Chapter 6 - Smartphone Forensic
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Enclave NO.0X7971</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2024-02-04T16:00:01.000Z" itemprop="datePublished">2024-02-05</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/forensic/" rel="tag">forensic</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="1-Comparation-Between-Mobile-Device-and-PC"><a href="#1-Comparation-Between-Mobile-Device-and-PC" class="headerlink" title="1. Comparation Between Mobile Device and PC"></a>1. Comparation Between Mobile Device and PC</h2><table>
+<thead>
+<tr>
+<th></th>
+<th>iphone</th>
+<th>Mac</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Computing power</td>
+<td>&#x3D;</td>
+<td>&#x3D;</td>
+</tr>
+<tr>
+<td>Storage</td>
+<td>&lt;</td>
+<td>a bit larger</td>
+</tr>
+<tr>
+<td>Ram</td>
+<td>&#x3D;</td>
+<td>&#x3D;</td>
+</tr>
+<tr>
+<td>Connectivity</td>
+<td>&gt;</td>
+<td>Need a WIFI or Ethernet</td>
+</tr>
+<tr>
+<td>Power consumption</td>
+<td>&lt;</td>
+<td></td>
+</tr>
+<tr>
+<td>System</td>
+<td>Advanced</td>
+<td></td>
+</tr>
+<tr>
+<td>Security</td>
+<td>Encrypted storage</td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id="2-Acquisition-Types"><a href="#2-Acquisition-Types" class="headerlink" title="2. Acquisition Types"></a>2. Acquisition Types</h2><ol>
+<li><p>Logical Acquisition<br>A high-leve acquisition, normally describe the action of copying that allowed by the system.    </p>
+<ul>
+<li>Pros: easy and time friendly and no need to wipe the trace of this kind of actions.    </li>
+<li>Cons: limited capabilities.</li>
+</ul>
+</li>
+<li><p>File System Acquisition<br>A middle-level acquisition copys the file system’s structure, including the existing logical objects lying on top of it.    </p>
+<ul>
+<li>Pros: Can recover deleted objects.    </li>
+<li>Cons: long time needed, harder than logical acquisition.</li>
+</ul>
+</li>
+<li><p>Physical Acquisition<br>a bit-by-bit copy of the storage media.    </p>
+<ul>
+<li>Pros: very powerful.    </li>
+<li>Cons: Hard, long time needed.</li>
+</ul>
+</li>
+</ol>
+<h2 id="3-Data-Extraction-Types"><a href="#3-Data-Extraction-Types" class="headerlink" title="3. Data Extraction Types"></a>3. Data Extraction Types</h2><ol>
+<li>Manual Extraction   </li>
+<li>Logical Extraction   </li>
+<li>Physical Extraction   </li>
+<li>JTAG &amp; Chip-Off</li>
+</ol>
+<h2 id="4-Privilege-Gaining-Techniques"><a href="#4-Privilege-Gaining-Techniques" class="headerlink" title="4. Privilege Gaining Techniques"></a>4. Privilege Gaining Techniques</h2><ol>
+<li><p>Android -&gt; Rooting    </p>
+<ul>
+<li>Permanent: replace kernel   </li>
+<li>Temporary: forensic software, a usual restart can cause it reversing to un-rooted state</li>
+</ul>
+</li>
+<li><p>IOS -&gt; Jailbreaking    </p>
+<ul>
+<li>Tethered Jailbreaking: reset after restarting, device won’t function fully until jailbreaking again.   </li>
+<li>Semi-tethered Jailbreaking: reset after restarting, device retains most of its function except those requires elevation or outside of normal operating parameters.   </li>
+<li>Untethered Jailbreaking: permanent until system upgrade.</li>
+</ul>
+</li>
+<li><p>Restrictions    </p>
+<ul>
+<li>secure applications like banking or finance-related use sand-box.</li>
+<li>device will be untrusted</li>
+</ul>
+</li>
+</ol>
+<h2 id="5-Forensic-Part"><a href="#5-Forensic-Part" class="headerlink" title="5. Forensic Part"></a>5. Forensic Part</h2><ol>
+<li><p>Remember    </p>
+<ul>
+<li>Don’t turn off mobile device</li>
+<li>Isolate the device from network connection</li>
+</ul>
+</li>
+<li><p>Things to collect   </p>
+<ol>
+<li>SIM-Card<ul>
+<li>International Mobile Equipment Identity -&gt; IMEI, the name of your mobile devices.</li>
+<li>Integrated Circuit Card ID -&gt; ICCID, link to the owner</li>
+<li>International Mobile Subscriber Identity -&gt; IMSI, find the background information about this sim card, like country, mobile network and subscriber number.</li>
+<li>PIN, PUK number, SIM applications</li>
+</ul>
+</li>
+<li>Phone memory   <ul>
+<li>Contacts</li>
+<li>SMS, MMS</li>
+<li>Email</li>
+<li>Call list</li>
+<li>Multimedia stuff</li>
+<li>Calendar</li>
+<li>Geo-location</li>
+</ul>
+</li>
+<li>Online accounts<ul>
+<li>Browser’s history</li>
+<li>Password storage</li>
+</ul>
+</li>
+</ol>
+</li>
+<li><p>Choosing the right extraction strategy</p>
+</li>
+</ol>
+<p><img src="/images/forensic_Resource4CH6/Extraction%20Strategy.png" alt="img"></p>
+<ol start="4">
+<li><p>Misc </p>
+<ul>
+<li><p>Android    </p>
+<p>  <img src="/images/forensic_Resource4CH6/FSofAndroid.png" alt="img"></p>
+</li>
+<li><p>IOS    </p>
+<p>  <img src="/images/forensic_Resource4CH6/IOS.png" alt="img"></p>
+</li>
+<li><p>.APK   </p>
+<p>  <img src="/images/forensic_Resource4CH6/apk.png" alt="img"></p>
+</li>
+<li><p>Mobile forensic tools   </p>
+<p>  <img src="/images/forensic_Resource4CH6/tools.png" alt="img"></p>
+</li>
+</ul>
+</li>
+</ol>
+
+  </div>
+</article>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Recent</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Archives</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Comparation-Between-Mobile-Device-and-PC"><span class="toc-number">1.</span> <span class="toc-text">1. Comparation Between Mobile Device and PC</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Acquisition-Types"><span class="toc-number">2.</span> <span class="toc-text">2. Acquisition Types</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Data-Extraction-Types"><span class="toc-number">3.</span> <span class="toc-text">3. Data Extraction Types</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Privilege-Gaining-Techniques"><span class="toc-number">4.</span> <span class="toc-text">4. Privilege Gaining Techniques</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-Forensic-Part"><span class="toc-number">5.</span> <span class="toc-text">5. Forensic Part</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://yuqidai.github.io/2024/02/05/forensic/forensic_CH6_Smartphone%20Forensic/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://yuqidai.github.io/2024/02/05/forensic/forensic_CH6_Smartphone%20Forensic/&text=Forensic Chapter 6 - Smartphone Forensic"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://yuqidai.github.io/2024/02/05/forensic/forensic_CH6_Smartphone%20Forensic/&title=Forensic Chapter 6 - Smartphone Forensic"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://yuqidai.github.io/2024/02/05/forensic/forensic_CH6_Smartphone%20Forensic/&is_video=false&description=Forensic Chapter 6 - Smartphone Forensic"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Forensic Chapter 6 - Smartphone Forensic&body=Check out this article: https://yuqidai.github.io/2024/02/05/forensic/forensic_CH6_Smartphone%20Forensic/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://yuqidai.github.io/2024/02/05/forensic/forensic_CH6_Smartphone%20Forensic/&title=Forensic Chapter 6 - Smartphone Forensic"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://yuqidai.github.io/2024/02/05/forensic/forensic_CH6_Smartphone%20Forensic/&title=Forensic Chapter 6 - Smartphone Forensic"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://yuqidai.github.io/2024/02/05/forensic/forensic_CH6_Smartphone%20Forensic/&title=Forensic Chapter 6 - Smartphone Forensic"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://yuqidai.github.io/2024/02/05/forensic/forensic_CH6_Smartphone%20Forensic/&title=Forensic Chapter 6 - Smartphone Forensic"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://yuqidai.github.io/2024/02/05/forensic/forensic_CH6_Smartphone%20Forensic/&name=Forensic Chapter 6 - Smartphone Forensic&description="><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-mid">
+    Copyright &copy; 2024 Dai Yuqi ❤️ updated on 20th July 2024.
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+
+
+<link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
+
+
+<!-- jquery -->
+
+<script src="/lib/jquery/jquery.min.js"></script>
+
+
+<script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+
+
+
+
