@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="What is fuzz testingFuzz testing or fuzzing is an automated software testing method that injects invalid, malformed, unexpected or random data as an input to a system to reveal software defects and vu">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Fuzzing test on Windows">
+<meta property="og:url" content="https://yuqidai.github.io/2024/07/29/fuzz/fuzzying/index.html">
+<meta property="og:site_name" content="Enclave NO.0X7971">
+<meta property="og:description" content="What is fuzz testingFuzz testing or fuzzing is an automated software testing method that injects invalid, malformed, unexpected or random data as an input to a system to reveal software defects and vu">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-07-28T16:00:01.000Z">
+<meta property="article:modified_time" content="2024-07-31T16:12:38.165Z">
+<meta property="article:author" content="Dai Yuqi">
+<meta property="article:tag" content="fuzz">
+<meta name="twitter:card" content="summary">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon.ico" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
+          
+        
+    
+    <!-- title -->
+    <title>Fuzzing test on Windows</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- rss -->
+    
+    
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+<body>
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Recent</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Archives</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" href="/2024/04/01/reverse%20engineering/PE%20File/PE_Format/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://yuqidai.github.io/2024/07/29/fuzz/fuzzying/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://yuqidai.github.io/2024/07/29/fuzz/fuzzying/&text=Fuzzing test on Windows"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://yuqidai.github.io/2024/07/29/fuzz/fuzzying/&title=Fuzzing test on Windows"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://yuqidai.github.io/2024/07/29/fuzz/fuzzying/&is_video=false&description=Fuzzing test on Windows"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Fuzzing test on Windows&body=Check out this article: https://yuqidai.github.io/2024/07/29/fuzz/fuzzying/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://yuqidai.github.io/2024/07/29/fuzz/fuzzying/&title=Fuzzing test on Windows"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://yuqidai.github.io/2024/07/29/fuzz/fuzzying/&title=Fuzzing test on Windows"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://yuqidai.github.io/2024/07/29/fuzz/fuzzying/&title=Fuzzing test on Windows"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://yuqidai.github.io/2024/07/29/fuzz/fuzzying/&title=Fuzzing test on Windows"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://yuqidai.github.io/2024/07/29/fuzz/fuzzying/&name=Fuzzing test on Windows&description="><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#What-is-fuzz-testing"><span class="toc-number">1.</span> <span class="toc-text">What is fuzz testing</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Why-fuzz-testing"><span class="toc-number">2.</span> <span class="toc-text">Why fuzz testing</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Fuzzing-is-typically-used-to-find-the-following-kinds-of-bugs"><span class="toc-number">2.1.</span> <span class="toc-text">Fuzzing is typically used to find the following kinds of bugs</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Fuzzing-tools"><span class="toc-number">3.</span> <span class="toc-text">Fuzzing tools</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#libFuzzer"><span class="toc-number">3.1.</span> <span class="toc-text">libFuzzer</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AFL"><span class="toc-number">3.2.</span> <span class="toc-text">AFL</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#FuzzTest"><span class="toc-number">3.3.</span> <span class="toc-text">FuzzTest</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Tool-usage"><span class="toc-number">4.</span> <span class="toc-text">Tool usage</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#libFuzzer-1"><span class="toc-number">4.1.</span> <span class="toc-text">libFuzzer</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Result-analysis"><span class="toc-number">5.</span> <span class="toc-text">Result analysis</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#libFuzzer-2"><span class="toc-number">5.1.</span> <span class="toc-text">libFuzzer</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index width mx-auto px2 my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Fuzzing test on Windows
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Enclave NO.0X7971</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2024-07-28T16:00:01.000Z" itemprop="datePublished">2024-07-29</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/fuzz/" rel="tag">fuzz</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="What-is-fuzz-testing"><a href="#What-is-fuzz-testing" class="headerlink" title="What is fuzz testing"></a>What is fuzz testing</h2><p>Fuzz testing or fuzzing is an automated software testing method that injects invalid, malformed, unexpected or random data as an input to a system to reveal software defects and vulnerabilities.</p>
+<h2 id="Why-fuzz-testing"><a href="#Why-fuzz-testing" class="headerlink" title="Why fuzz testing"></a>Why fuzz testing</h2><p>Fuzz testing is valuable for:</p>
+<ul>
+<li>Software that receives inputs from untrusted sources (security);</li>
+<li>Sanity checking the equivalence of two complex algorithms (correctness);</li>
+<li>Verifying the stability of a high-volume API that takes complex inputs (stability), e.g. a decompressor, even if all the inputs are trusted.</li>
+</ul>
+<p>Fuzz testing finds programming errors unrelated to the project requirements. Errors are always errors, e.g. memory leaks or buffer overflows. Developers will rarely write tests to try and catch these types of bugs, and these are exactly the types of bugs that lead to security holes and reliability problems. Fuzzing is a great and very effective way to find these bugs before they hit you in production or the bad guys exploit them.</p>
+<h3 id="Fuzzing-is-typically-used-to-find-the-following-kinds-of-bugs"><a href="#Fuzzing-is-typically-used-to-find-the-following-kinds-of-bugs" class="headerlink" title="Fuzzing is typically used to find the following kinds of bugs"></a>Fuzzing is typically used to find the following kinds of bugs</h3><ol>
+<li>Bugs specific to C&#x2F;C++ that require the <a target="_blank" rel="noopener" href="https://github.com/google/sanitizers"><em>sanitizers</em></a> to catch:<ul>
+<li>Use-after-free, buffer overflows</li>
+<li>Uses of uninitialized memory</li>
+<li>Memory leaks</li>
+</ul>
+</li>
+<li>Arithmetic bugs:<br>Div-by-zero, int&#x2F;float overflows, invalid bitwise shifts</li>
+<li>Plain crashes:<br>NULL dereferences, Uncaught exceptions</li>
+<li>Concurrency bugs:<br>Data races, Deadlocks</li>
+<li>Resource usage bugs:<br>Memory exhaustion, hangs or infinite loops, infinite recursion (stack overflows)</li>
+<li>Logical bugs:    <ul>
+<li>Discrepancies between two implementations of the same protocol (<a target="_blank" rel="noopener" href="https://blog.fuzzing-project.org/31-Fuzzing-Math-miscalculations-in-OpenSSLs-BN_mod_exp-CVE-2015-3193.html">example</a>)</li>
+<li>Round-trip consistency bugs (e.g. compress the input, decompress back, - compare with the original)    </li>
+<li>Assertion failures</li>
+</ul>
+</li>
+</ol>
+<p>Most of these are exactly the kinds of bugs that attackers use to produce exploits, from denial-of-service through to full remote code execution.</p>
+<h2 id="Fuzzing-tools"><a href="#Fuzzing-tools" class="headerlink" title="Fuzzing tools"></a>Fuzzing tools</h2><h3 id="libFuzzer"><a href="#libFuzzer" class="headerlink" title="libFuzzer"></a>libFuzzer</h3><p>libFuzzer is a library for coverage-guided fuzz testing. It is supported by Clang (starting from 6.0).</p>
+<ol>
+<li><p>Steps to use libFuzzer:</p>
+<ul>
+<li>Install llvm-clang in your system.</li>
+<li>write an entry function to invoke the fuzz function.</li>
+<li>compile your code with “-fsanitize&#x3D;address, -fsanitize&#x3D;fuzzer” option to turn on fuzzing and ASAN.</li>
+<li>Run the executable file you get with the options you input.</li>
+</ul>
+</li>
+<li><p>Reference:</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://llvm.org/docs/LibFuzzer.html">libFuzzer offical documents</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/google/fuzzing/blob/master/tutorial/libFuzzerTutorial.md">libFuzzer tutorial</a></li>
+</ul>
+</li>
+</ol>
+<h3 id="AFL"><a href="#AFL" class="headerlink" title="AFL"></a>AFL</h3><h3 id="FuzzTest"><a href="#FuzzTest" class="headerlink" title="FuzzTest"></a>FuzzTest</h3><h2 id="Tool-usage"><a href="#Tool-usage" class="headerlink" title="Tool usage"></a>Tool usage</h2><h3 id="libFuzzer-1"><a href="#libFuzzer-1" class="headerlink" title="libFuzzer"></a>libFuzzer</h3><ol>
+<li>Write fuzzer code<br> refer to <a target="_blank" rel="noopener" href="https://github.com/google/fuzzing/blob/master/tutorial/libFuzzerTutorial.md">libFuzzer tutorial</a>, easy and clear.</li>
+<li>Build the fuzzer<ul>
+<li><p>Under Windows:</p>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">clang -fsanitize=address -fsanitize=fuzzer -g ./source.c ./dependent.c -o ./out.exe -O2</span><br></pre></td></tr></table></figure>
+<ol>
+<li>-fsanitize&#x3D;address means opening the address sanitizer (In windows, only ASAN supported)</li>
+<li>-fsanitize&#x3D;fuzzer means using the libfuzzer in llvm suite</li>
+<li>-g means showing the detail of the compiling process</li>
+</ol>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">clang -fsanitize=address -fsanitize=fuzzer -fprofile-instr-generate -fcoverage-mapping -g ./source.c ./dependent.c -o ./out.exe -O2</span><br></pre></td></tr></table></figure>
+<ol>
+<li>-fporfile-instr-generate and  -fcoverage-mapping is to enable the coverage while compiling the code</li>
+<li>If you want to visualize the result, you can refer to <a target="_blank" rel="noopener" href="https://clang.llvm.org/docs/SourceBasedCodeCoverage.html">SourceBasedCodeCoverage</a>, follow the steps they provide</li>
+</ol>
+</li>
+<li><p>Under MacOS:<br>  same as on Windows</p>
+</li>
+<li><p>Under Linux:<br>  same as on Windows</p>
+</li>
+</ul>
+</li>
+<li>Use fuzzer program<ul>
+<li><p>Build a corpus:<br>   corpus is a set of valid and invalid input files designated by users, it can help the fuzzer program generate more usable testing cases. For example, if your program is a PE file parser, the corpus can be some valid PE files and some txt files. The corpus of libfuzzer is acutally a directory with desired input inside. AND, it’s also OK if you run the fuzzer program without a corpus, but the performance of libfuzzer won’t be very beautiful.</p>
+</li>
+<li><p>Merge the corpora:<br>   If you have several corpora generated from the same file, the you can run the cmd below</p>
+   <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./fuzzer.exe -merge=1 ./corpus_1/ ./corpus_2/</span><br></pre></td></tr></table></figure>
+<p>   to merge two corpora to one, in the example above, the coveraged path in .&#x2F;corpus_2 will be merged to .&#x2F;corpus_1.</p>
+</li>
+<li><p>Running the fuzzer:</p>
+<ol>
+<li>multi-process fuzzing   <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./fuzzer.exe -detect_leaks=1 -<span class="built_in">jobs</span>=4 -workers=4 -rss_limit_mb=32000 -runs=50</span><br></pre></td></tr></table></figure></li>
+</ol>
+<ul>
+<li>-detect_leaks&#x3D;1, try to detect memory leaks during fuzzing</li>
+<li>-jobs&#x3D;10, number of fuzzing jobs to run to completion</li>
+<li>-workers&#x3D;4, ideally will distribute 4 cpu core to execute 4 process processing the fuzzing tasks, but acually if your cpu only has let’s say 4 cores, then the practical running processes will only be min(jobs, cpu core&#x2F;2) &#x3D; 2.</li>
+</ul>
+   <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">The relationship between job and worker:</span><br><span class="line">        job No.1    __ worker NO.1</span><br><span class="line">                    |_ worker NO.2</span><br><span class="line">                    |_ worker NO.3</span><br><span class="line">                    |_ worker No.4</span><br><span class="line"></span><br><span class="line">        job No.2    __ worker NO.1</span><br><span class="line">                    |_ worker NO.2</span><br><span class="line">                    |_ worker NO.3</span><br><span class="line">                    |_ worker No.4</span><br></pre></td></tr></table></figure>
+</li>
+<li></li>
+</ul>
+</li>
+</ol>
+<h2 id="Result-analysis"><a href="#Result-analysis" class="headerlink" title="Result analysis"></a>Result analysis</h2><h3 id="libFuzzer-2"><a href="#libFuzzer-2" class="headerlink" title="libFuzzer"></a>libFuzzer</h3><ol>
+<li>Sample result analysis (without error found)<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">INFO: Seed: 1523017872</span><br><span class="line">INFO: Loaded 1 modules (16 guards): [0x744e60, 0x744ea0),</span><br><span class="line">INFO: -max_len is not provided, using 64</span><br><span class="line">INFO: A corpus is not provided, starting from an empty corpus</span><br><span class="line"><span class="comment">#0    READ units: 1</span></span><br><span class="line"><span class="comment">#1    INITED cov: 3 ft: 2 corp: 1/1b exec/s: 0 rss: 24Mb</span></span><br><span class="line"><span class="comment">#3811 NEW    cov: 4 ft: 3 corp: 2/2b exec/s: 0 rss: 25Mb L: 1 MS: 5 ChangeBit-ChangeByte-ChangeBit-ShuffleBytes-ChangeByte-</span></span><br><span class="line"><span class="comment">#3827 NEW    cov: 5 ft: 4 corp: 3/4b exec/s: 0 rss: 25Mb L: 2 MS: 1 CopyPart-</span></span><br><span class="line"><span class="comment">#3963 NEW    cov: 6 ft: 5 corp: 4/6b exec/s: 0 rss: 25Mb L: 2 MS: 2 ShuffleBytes-ChangeBit-</span></span><br><span class="line"><span class="comment">#4167 NEW    cov: 7 ft: 6 corp: 5/9b exec/s: 0 rss: 25Mb L: 3 MS: 1 InsertByte-</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+<p>INFO analysis:</p>
+<ul>
+<li>Seed: the currently using random seed.</li>
+<li>-max_len: the maximum length of the random input, can be assigned by user or automatically assigned by the program.</li>
+<li>corpus: the dictionary directory which can help the program generate more fitted input.</li>
+</ul>
+<p>Formal round analysis:</p>
+<ul>
+<li>#Number: Which round of fuzzing is going on.</li>
+<li>Event code: READ, INITED, NEW … refer to <a target="_blank" rel="noopener" href="https://llvm.org/docs/LibFuzzer.html#output">output code</a></li>
+<li>cov: Total number of code blocks or edges covered by executing the <strong>current</strong> corpus</li>
+<li>ft: libFuzzer uses different signals to evaluate the code coverage: edge coverage, edge counters, value profiles, indirect caller&#x2F;callee pairs, etc. These signals combined are called features (ft:)</li>
+<li>corp: Number of entries in the current in-memory test corpus and its size in bytes</li>
+<li>exec&#x2F;s: Number of fuzzer iterations per second</li>
+<li>rss: Current memory consumption</li>
+<li>L: Size of the new input in bytes</li>
+<li>MS: Count and list of the mutation operations used to generate the input</li>
+</ul>
+<ol>
+<li>Real case result analysis (with error found)<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">BC277F8184738644C504ACDFF22048E0BC277F8184738644C504ACDFF22048E0B05556AC7363B8E560A317DA6654A49DBC277F8184738644C504ACDFF22048E0==15656==ERROR: AddressSanitizer failed to allocate 0x61635000 (1633898496) bytes of LargeMmapAllocator (error code: 1455)</span><br><span class="line">==15656==Dumping process modules:</span><br><span class="line">        0x7ff786c60000-0x7ff7877e5000 C:\Project\out.exe</span><br><span class="line">        0x7ff8ba770000-0x7ff8ba782000 C:\WINDOWS\SYSTEM32\kernel.appcore.dll</span><br><span class="line">        0x7ff8bd940000-0x7ff8bdc36000 C:\WINDOWS\System32\KERNELBASE.dll</span><br><span class="line">        0x7ff8beb80000-0x7ff8bec1e000 C:\WINDOWS\System32\msvcrt.dll</span><br><span class="line">        0x7ff8bfc90000-0x7ff8bfdb3000 C:\WINDOWS\System32\RPCRT4.dll</span><br><span class="line">        0x7ff8c0150000-0x7ff8c020d000 C:\WINDOWS\System32\KERNEL32.DLL</span><br><span class="line">        0x7ff8c0250000-0x7ff8c0448000 C:\WINDOWS\SYSTEM32\ntdll.dll</span><br><span class="line">AddressSanitizer: CHECK failed: sanitizer_common.cpp:61 <span class="string">&quot;((0 &amp;&amp; &quot;</span>unable to mmap<span class="string">&quot;)) != (0)&quot;</span> (0x0, 0x0) (tid=77952)</span><br><span class="line">    <span class="comment">#0 0x7ff786c91d98 in __asan::CheckUnwind C:\src\llvm_package_18.1.8\llvm-project\compiler-rt\lib\asan\asan_rtl.cpp:69</span></span><br><span class="line">    <span class="comment">#1 0x7ff786c76b24 in __sanitizer::CheckFailed(char const *, int, char const *, unsigned __int64, unsigned __int64) C:\src\llvm_package_18.1.8\llvm-project\compiler-rt\lib\sanitizer_common\sanitizer_termination.cpp:86</span></span><br><span class="line">    <span class="comment">#2 0x7ff786c87246 in __sanitizer::ReportMmapFailureAndDie(unsigned __int64, char const *, char const *, unsigned int, bool) C:\src\llvm_package_18.1.8\llvm-project\compiler-rt\lib\sanitizer_common\sanitizer_common.cpp:61</span></span><br><span class="line">    <span class="comment">#3 0x7ff786c76f31 in __sanitizer::ReturnNullptrOnOOMOrDie C:\src\llvm_package_18.1.8\llvm-project\compiler-rt\lib\sanitizer_common\sanitizer_win.cpp:172</span></span><br><span class="line">    <span class="comment">#4 0x7ff786c76f31 in __sanitizer::MmapOrDieOnFatalError(unsigned __int64, char const *) C:\src\llvm_package_18.1.8\llvm-project\compiler-rt\lib\sanitizer_common\sanitizer_win.cpp:1e_18.1.8\llvm-project\compiler-rt\lib\sanitizer_common\sanitizer_allocator_secondary.h:97</span></span><br><span class="line">    <span class="comment">#6 0x7ff786caf1bb in __sanitizer::CombinedAllocator&lt;__sanitizer::SizeClassAllocator64&lt;__asan::AP64&lt;__sanitizer::LocalAddressSpaceView&gt; &gt;,__san, struct __sanitizer::LocalAddressSpacitizer::LargeMmapAllocatorPtrArrayDynamic&gt;::Allocate C:\src\llvm_package_18.1.8\llvm-project\compiler-rt\lib\sanitizer_common\sanitizer_allocator_sanitizer_common\sanitizer_allocator_scombined.h:71</span></span><br><span class="line">    <span class="comment">#7 0x7ff786caf1bb in __asan::Allocator::Allocate(unsigned __int64, unsigned __int64, struct __sanitizer::BufferedStackTrace *, enum __asan::Alitizer::LargeMmapAllocatorPtrArrayDynalocType, bool) C:\src\llvm_package_18.1.8\llvm-project\compiler-rt\lib\asan\asan_allocator.cpp:582</span></span><br><span class="line">    <span class="comment">#8 0x7ff786caee99 in __asan::asan_malloc(unsigned __int64, struct __sanitizer::BufferedStackTrace *) C:\src\llvm_package_18.1.8\llvm-project\clocType, bool) C:\src\llvm_package_18.ompiler-rt\lib\asan\asan_allocator.cpp:1000</span></span><br><span class="line">    <span class="comment">#9 0x7ff786c98553 in malloc C:\src\llvm_package_18.1.8\llvm-project\compiler-rt\lib\asan\asan_malloc_win.cpp:99                               ompiler-rt\lib\asan\asan_allocator.cpp</span></span><br><span class="line">    <span class="comment">#10 0x7ff786c62c77 in xxxxxx_x_x_x_x C:\xxxxx_xxxxxx.c:221      </span></span><br><span class="line">    <span class="comment">#11 0x7ff786c611ee in LLVMFuzzerTestOneInput C:\playxxxxxxx.c:46</span></span><br><span class="line">    <span class="comment">#12 0x7ff786cdc729 in fuzzer::Fuzzer::ExecuteCallback(unsigned char const *, unsigned __int64) C:\src\llvm_package_18.1.8\llvm-project\compiler-rt\lib\fuzzer\FuzzerLoop.cpp:614</span></span><br><span class="line">    <span class="comment">#13 0x7ff786cdd3eb in fuzzer::Fuzzer::TryDetectingAMemoryLeak(unsigned char const *, unsigned __int64, bool) C:\src\llvm_package_18.1.8\llvm-pr-rt\lib\fuzzer\FuzzerLoop.cpp:614    roject\compiler-rt\lib\fuzzer\FuzzerLoop.cpp:690                                                                                                  roject\compiler-rt\lib\fuzzer\FuzzerLo</span></span><br><span class="line">    <span class="comment">#14 0x7ff786cdd717 in fuzzer::Fuzzer::MutateAndTestOne(void) C:\src\llvm_package_18.1.8\llvm-project\compiler-rt\lib\fuzzer\FuzzerLoop.cpp:762</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">#15 0x7ff786cde2e5 in fuzzer::Fuzzer::Loop(class std::vector&lt;struct fuzzer::SizedFile, class std::allocator&lt;struct fuzzer::SizedFile&gt;&gt; &amp;) C:\src\llvm_package_18.1.8\llvm-project\corc\llvm_package_18.1.8\llvm-project\compiler-rt\lib\fuzzer\FuzzerLoop.cpp:905</span></span><br><span class="line">    <span class="comment">#16 0x7ff786cfaffc in fuzzer::FuzzerDriver(int *, char ***, int (__cdecl *)(unsigned char const *, unsigned __int64)) C:\src\llvm_package_18.1.8\llvm-project\compiler-rt\lib\fuzzer.8\llvm-project\compiler-rt\lib\fuzzer\FuzzerDriver.cpp:914</span></span><br><span class="line">    <span class="comment">#17 0x7ff786cb6d62 in main C:\src\llvm_package_18.1.8\llvm-project\compiler-rt\lib\fuzzer\FuzzerMain.cpp:20</span></span><br><span class="line">    <span class="comment">#18 0x7ff786d07b6b in invoke_main D:\a\_work\1\s\src\vctools\crt\vcstartup\src\startup\exe_common.inl:78</span></span><br><span class="line">    <span class="comment">#19 0x7ff786d07b6b in __scrt_common_main_seh D:\a\_work\1\s\src\vctools\crt\vcstartup\src\startup\exe_common.inl:288</span></span><br><span class="line">    <span class="comment">#20 0x7ff8c0167343  (C:\WINDOWS\System32\KERNEL32.DLL+0x180017343)</span></span><br><span class="line">    <span class="comment">#21 0x7ff8c029cc90  (C:\WINDOWS\SYSTEM32\ntdll.dll+0x18004cc90)</span></span><br><span class="line"></span><br><span class="line">MS: 3 ChangeByte-InsertRepeatedBytes-CrossOver-; base unit: 093656ecd97bcd7d4fac99048da35ccc334c11d3</span><br><span class="line">artifact_prefix=<span class="string">&#x27;./&#x27;</span>; Test unit written to ./crash-197275936eb03f16ab89f9eabe73b665728c3c32</span><br></pre></td></tr></table></figure>
+Error Analysis: the mechanism of libfuzzer of finding errors is actually using address sanitizers to check if there’s any illegal memory occuring. If yes, then the libfuzzer will break and return the error message.<br>The way we analyze error messages are given as below:<ul>
+<li>Find out the error type, it is “AddressSanitizer failed to allocate” in this case.</li>
+<li>Locate the error function in our testing code.</li>
+<li>Comment the code and execute the fuzz again to see if the error happens again.</li>
+<li>Organize your logic and see if it’s a false negative or real error.</li>
+</ul>
+</li>
+</ol>
+
+  </div>
+</article>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Recent</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Archives</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#What-is-fuzz-testing"><span class="toc-number">1.</span> <span class="toc-text">What is fuzz testing</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Why-fuzz-testing"><span class="toc-number">2.</span> <span class="toc-text">Why fuzz testing</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Fuzzing-is-typically-used-to-find-the-following-kinds-of-bugs"><span class="toc-number">2.1.</span> <span class="toc-text">Fuzzing is typically used to find the following kinds of bugs</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Fuzzing-tools"><span class="toc-number">3.</span> <span class="toc-text">Fuzzing tools</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#libFuzzer"><span class="toc-number">3.1.</span> <span class="toc-text">libFuzzer</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AFL"><span class="toc-number">3.2.</span> <span class="toc-text">AFL</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#FuzzTest"><span class="toc-number">3.3.</span> <span class="toc-text">FuzzTest</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Tool-usage"><span class="toc-number">4.</span> <span class="toc-text">Tool usage</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#libFuzzer-1"><span class="toc-number">4.1.</span> <span class="toc-text">libFuzzer</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Result-analysis"><span class="toc-number">5.</span> <span class="toc-text">Result analysis</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#libFuzzer-2"><span class="toc-number">5.1.</span> <span class="toc-text">libFuzzer</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://yuqidai.github.io/2024/07/29/fuzz/fuzzying/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://yuqidai.github.io/2024/07/29/fuzz/fuzzying/&text=Fuzzing test on Windows"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://yuqidai.github.io/2024/07/29/fuzz/fuzzying/&title=Fuzzing test on Windows"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://yuqidai.github.io/2024/07/29/fuzz/fuzzying/&is_video=false&description=Fuzzing test on Windows"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Fuzzing test on Windows&body=Check out this article: https://yuqidai.github.io/2024/07/29/fuzz/fuzzying/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://yuqidai.github.io/2024/07/29/fuzz/fuzzying/&title=Fuzzing test on Windows"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://yuqidai.github.io/2024/07/29/fuzz/fuzzying/&title=Fuzzing test on Windows"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://yuqidai.github.io/2024/07/29/fuzz/fuzzying/&title=Fuzzing test on Windows"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://yuqidai.github.io/2024/07/29/fuzz/fuzzying/&title=Fuzzing test on Windows"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://yuqidai.github.io/2024/07/29/fuzz/fuzzying/&name=Fuzzing test on Windows&description="><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-mid">
+    Copyright &copy; 2024 Dai Yuqi ❤️ updated on 20th July 2024.
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+
+
+<link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
+
+
+<!-- jquery -->
+
+<script src="/lib/jquery/jquery.min.js"></script>
+
+
+<script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+
+
+
+
