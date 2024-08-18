@@ -6,15 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="3. Implementation on various layers of the OSFirst thing first, the core principles of ASM, are:      Defense in depth (DiD) In brief, DiD means adopint many aspects of protections to make the object">
+    <meta name="description" content="First thing first, the core principles of ASM, are:      Defense in depth (DiD) In brief, DiD means adopint many aspects of protections to make the object secure. For example, if you want to steal the">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ASM CH3 - Implementation of ASM">
 <meta property="og:url" content="https://yuqidai.github.io/2024/08/18/ASM/ASM_CH3_Implementation%20of%20ASM/index.html">
 <meta property="og:site_name" content="Enclave NO.0X7971">
-<meta property="og:description" content="3. Implementation on various layers of the OSFirst thing first, the core principles of ASM, are:      Defense in depth (DiD) In brief, DiD means adopint many aspects of protections to make the object">
+<meta property="og:description" content="First thing first, the core principles of ASM, are:      Defense in depth (DiD) In brief, DiD means adopint many aspects of protections to make the object secure. For example, if you want to steal the">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2024-08-18T15:16:40.688Z">
-<meta property="article:modified_time" content="2024-08-18T15:31:16.084Z">
+<meta property="article:published_time" content="2024-08-17T16:00:01.000Z">
+<meta property="article:modified_time" content="2024-08-18T15:33:46.563Z">
 <meta property="article:author" content="Dai Yuqi">
 <meta property="article:tag" content="ASM">
 <meta name="twitter:card" content="summary">
@@ -70,7 +70,7 @@
       <ul>
         
         
-        <li><a class="icon" href="/2024/08/18/ASM/ASM_CH2_Generic%20Security%20Model/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        <li><a class="icon" href="/2024/08/10/ASM/ASM_CH2_Generic%20Security%20Model/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
         
         <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
         <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
@@ -97,7 +97,7 @@
 
     </div>
     <div id="toc">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#3-Implementation-on-various-layers-of-the-OS"><span class="toc-number">1.</span> <span class="toc-text">3. Implementation on various layers of the OS</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1-Enforced-authorization-Ongoing"><span class="toc-number">1.1.</span> <span class="toc-text">3.1 Enforced authorization (Ongoing)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-2-User-authentication-Ongoing"><span class="toc-number">1.2.</span> <span class="toc-text">3.2 User authentication (Ongoing)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-3-Isolation-and-containment-Ongoing"><span class="toc-number">1.3.</span> <span class="toc-text">3.3 Isolation and containment (Ongoing)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-4-By-default-encryption-at-rest-Ongoing"><span class="toc-number">1.4.</span> <span class="toc-text">3.4 By-default encryption at rest (Ongoing)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-5-In-transit-Ongoing"><span class="toc-number">1.5.</span> <span class="toc-text">3.5 In transit (Ongoing)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-6-Exploit-mitigation-Ongoing"><span class="toc-number">1.6.</span> <span class="toc-text">3.6 Exploit mitigation (Ongoing)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-7-Integrity-Ongoing"><span class="toc-number">1.7.</span> <span class="toc-text">3.7 Integrity (Ongoing)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-8-Patching-Updates-Ongoing"><span class="toc-number">1.8.</span> <span class="toc-text">3.8 Patching&#x2F;Updates (Ongoing)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-9-Cellular-network-security-Ongoing"><span class="toc-number">1.9.</span> <span class="toc-text">3.9 Cellular network security (Ongoing)</span></a></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1-Enforced-authorization-Ongoing"><span class="toc-number">1.</span> <span class="toc-text">3.1 Enforced authorization (Ongoing)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-2-User-authentication-Ongoing"><span class="toc-number">2.</span> <span class="toc-text">3.2 User authentication (Ongoing)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-3-Isolation-and-containment-Ongoing"><span class="toc-number">3.</span> <span class="toc-text">3.3 Isolation and containment (Ongoing)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-4-By-default-encryption-at-rest-Ongoing"><span class="toc-number">4.</span> <span class="toc-text">3.4 By-default encryption at rest (Ongoing)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-5-In-transit-Ongoing"><span class="toc-number">5.</span> <span class="toc-text">3.5 In transit (Ongoing)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-6-Exploit-mitigation-Ongoing"><span class="toc-number">6.</span> <span class="toc-text">3.6 Exploit mitigation (Ongoing)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-7-Integrity-Ongoing"><span class="toc-number">7.</span> <span class="toc-text">3.7 Integrity (Ongoing)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-8-Patching-Updates-Ongoing"><span class="toc-number">8.</span> <span class="toc-text">3.8 Patching&#x2F;Updates (Ongoing)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-9-Cellular-network-security-Ongoing"><span class="toc-number">9.</span> <span class="toc-text">3.9 Cellular network security (Ongoing)</span></a></li></ol>
     </div>
   </span>
 </div>
@@ -120,7 +120,7 @@
       </span>
       
     <div class="postdate">
-        <time datetime="2024-08-18T15:16:40.688Z" itemprop="datePublished">2024-08-18</time>
+        <time datetime="2024-08-17T16:00:01.000Z" itemprop="datePublished">2024-08-18</time>
     </div>
 
 
@@ -136,7 +136,7 @@
   
 
   <div class="content" itemprop="articleBody">
-    <h1 id="3-Implementation-on-various-layers-of-the-OS"><a href="#3-Implementation-on-various-layers-of-the-OS" class="headerlink" title="3. Implementation on various layers of the OS"></a>3. Implementation on various layers of the OS</h1><p>First thing first, the core principles of ASM, are:    </p>
+    <p>First thing first, the core principles of ASM, are:    </p>
 <ol>
 <li><p>Defense in depth (DiD)<br> In brief, DiD means adopint many aspects of protections to make the object secure. For example, if you want to steal the private data in Android, first you need to root the device, then let’s say after that you only need to decrypt the encrypted data. So in this case, we protect the data through 2 different aspects, one is rooting, the other is data encryption, this is called DiD.    </p>
 <p> Take one more example. Consider you have two types of ways to unlock your screen, one is using the 4 digits password, or using your biometric feature such as fingerprint or face recognization. Then this is not DiD.    </p>
@@ -217,7 +217,7 @@
     </div>
 
     <div id="toc-footer" style="display: none">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#3-Implementation-on-various-layers-of-the-OS"><span class="toc-number">1.</span> <span class="toc-text">3. Implementation on various layers of the OS</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1-Enforced-authorization-Ongoing"><span class="toc-number">1.1.</span> <span class="toc-text">3.1 Enforced authorization (Ongoing)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-2-User-authentication-Ongoing"><span class="toc-number">1.2.</span> <span class="toc-text">3.2 User authentication (Ongoing)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-3-Isolation-and-containment-Ongoing"><span class="toc-number">1.3.</span> <span class="toc-text">3.3 Isolation and containment (Ongoing)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-4-By-default-encryption-at-rest-Ongoing"><span class="toc-number">1.4.</span> <span class="toc-text">3.4 By-default encryption at rest (Ongoing)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-5-In-transit-Ongoing"><span class="toc-number">1.5.</span> <span class="toc-text">3.5 In transit (Ongoing)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-6-Exploit-mitigation-Ongoing"><span class="toc-number">1.6.</span> <span class="toc-text">3.6 Exploit mitigation (Ongoing)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-7-Integrity-Ongoing"><span class="toc-number">1.7.</span> <span class="toc-text">3.7 Integrity (Ongoing)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-8-Patching-Updates-Ongoing"><span class="toc-number">1.8.</span> <span class="toc-text">3.8 Patching&#x2F;Updates (Ongoing)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-9-Cellular-network-security-Ongoing"><span class="toc-number">1.9.</span> <span class="toc-text">3.9 Cellular network security (Ongoing)</span></a></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1-Enforced-authorization-Ongoing"><span class="toc-number">1.</span> <span class="toc-text">3.1 Enforced authorization (Ongoing)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-2-User-authentication-Ongoing"><span class="toc-number">2.</span> <span class="toc-text">3.2 User authentication (Ongoing)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-3-Isolation-and-containment-Ongoing"><span class="toc-number">3.</span> <span class="toc-text">3.3 Isolation and containment (Ongoing)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-4-By-default-encryption-at-rest-Ongoing"><span class="toc-number">4.</span> <span class="toc-text">3.4 By-default encryption at rest (Ongoing)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-5-In-transit-Ongoing"><span class="toc-number">5.</span> <span class="toc-text">3.5 In transit (Ongoing)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-6-Exploit-mitigation-Ongoing"><span class="toc-number">6.</span> <span class="toc-text">3.6 Exploit mitigation (Ongoing)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-7-Integrity-Ongoing"><span class="toc-number">7.</span> <span class="toc-text">3.7 Integrity (Ongoing)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-8-Patching-Updates-Ongoing"><span class="toc-number">8.</span> <span class="toc-text">3.8 Patching&#x2F;Updates (Ongoing)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-9-Cellular-network-security-Ongoing"><span class="toc-number">9.</span> <span class="toc-text">3.9 Cellular network security (Ongoing)</span></a></li></ol>
     </div>
 
     <div id="share-footer" style="display: none">
