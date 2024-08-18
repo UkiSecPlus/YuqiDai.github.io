@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="3. Implementation on various layers of the OSFirst thing first, the core principles of ASM, are:      Defense in depth (DiD) In brief, DiD means adopint many aspects of protections to make the object">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Implementation of ASM">
+<meta property="og:url" content="https://yuqidai.github.io/2024/08/18/ASM/ASM_CH3_Implementation%20of%20ASM/index.html">
+<meta property="og:site_name" content="Enclave NO.0X7971">
+<meta property="og:description" content="3. Implementation on various layers of the OSFirst thing first, the core principles of ASM, are:      Defense in depth (DiD) In brief, DiD means adopint many aspects of protections to make the object">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-08-18T15:16:40.688Z">
+<meta property="article:modified_time" content="2024-08-18T15:18:42.249Z">
+<meta property="article:author" content="Dai Yuqi">
+<meta property="article:tag" content="ASM">
+<meta name="twitter:card" content="summary">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon.ico" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
+          
+        
+    
+    <!-- title -->
+    <title>Implementation of ASM</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- rss -->
+    
+    
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+<body>
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Recent</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Archives</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" href="/2024/08/18/ASM/ASM_CH2_Generic%20Security%20Model/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://yuqidai.github.io/2024/08/18/ASM/ASM_CH3_Implementation%20of%20ASM/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://yuqidai.github.io/2024/08/18/ASM/ASM_CH3_Implementation%20of%20ASM/&text=Implementation of ASM"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://yuqidai.github.io/2024/08/18/ASM/ASM_CH3_Implementation%20of%20ASM/&title=Implementation of ASM"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://yuqidai.github.io/2024/08/18/ASM/ASM_CH3_Implementation%20of%20ASM/&is_video=false&description=Implementation of ASM"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Implementation of ASM&body=Check out this article: https://yuqidai.github.io/2024/08/18/ASM/ASM_CH3_Implementation%20of%20ASM/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://yuqidai.github.io/2024/08/18/ASM/ASM_CH3_Implementation%20of%20ASM/&title=Implementation of ASM"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://yuqidai.github.io/2024/08/18/ASM/ASM_CH3_Implementation%20of%20ASM/&title=Implementation of ASM"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://yuqidai.github.io/2024/08/18/ASM/ASM_CH3_Implementation%20of%20ASM/&title=Implementation of ASM"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://yuqidai.github.io/2024/08/18/ASM/ASM_CH3_Implementation%20of%20ASM/&title=Implementation of ASM"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://yuqidai.github.io/2024/08/18/ASM/ASM_CH3_Implementation%20of%20ASM/&name=Implementation of ASM&description="><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#3-Implementation-on-various-layers-of-the-OS"><span class="toc-number">1.</span> <span class="toc-text">3. Implementation on various layers of the OS</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1-Enforced-authorization-Ongoing"><span class="toc-number">1.1.</span> <span class="toc-text">3.1 Enforced authorization (Ongoing)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-2-User-authentication-Ongoing"><span class="toc-number">1.2.</span> <span class="toc-text">3.2 User authentication (Ongoing)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-3-Isolation-and-containment-Ongoing"><span class="toc-number">1.3.</span> <span class="toc-text">3.3 Isolation and containment (Ongoing)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-4-By-default-encryption-at-rest-Ongoing"><span class="toc-number">1.4.</span> <span class="toc-text">3.4 By-default encryption at rest (Ongoing)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-5-In-transit-Ongoing"><span class="toc-number">1.5.</span> <span class="toc-text">3.5 In transit (Ongoing)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-6-Exploit-mitigation-Ongoing"><span class="toc-number">1.6.</span> <span class="toc-text">3.6 Exploit mitigation (Ongoing)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-7-Integrity-Ongoing"><span class="toc-number">1.7.</span> <span class="toc-text">3.7 Integrity (Ongoing)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-8-Patching-Updates-Ongoing"><span class="toc-number">1.8.</span> <span class="toc-text">3.8 Patching&#x2F;Updates (Ongoing)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-9-Cellular-network-security-Ongoing"><span class="toc-number">1.9.</span> <span class="toc-text">3.9 Cellular network security (Ongoing)</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index width mx-auto px2 my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Implementation of ASM
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Enclave NO.0X7971</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2024-08-18T15:16:40.688Z" itemprop="datePublished">2024-08-18</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/ASM/" rel="tag">ASM</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h1 id="3-Implementation-on-various-layers-of-the-OS"><a href="#3-Implementation-on-various-layers-of-the-OS" class="headerlink" title="3. Implementation on various layers of the OS"></a>3. Implementation on various layers of the OS</h1><p>First thing first, the core principles of ASM, are:    </p>
+<ol>
+<li><p>Defense in depth (DiD)<br> In brief, DiD means adopint many aspects of protections to make the object secure. For example, if you want to steal the private data in Android, first you need to root the device, then let’s say after that you only need to decrypt the encrypted data. So in this case, we protect the data through 2 different aspects, one is rooting, the other is data encryption, this is called DiD.    </p>
+<p> Take one more example. Consider you have two types of ways to unlock your screen, one is using the 4 digits password, or using your biometric feature such as fingerprint or face recognization. Then this is not DiD.    </p>
+<p> So the difference between these two cases are that, if a hacker break one protection, here’s another one still working and the hacker can not achieve his goal, then DiD. </p>
+</li>
+<li><p>Safe by design&#x2F;default (SbD)<br> The default use of an operating system component or service should always protect security and privacy assumptions.</p>
+</li>
+</ol>
+<p>The following security mechanism we are going to introduce can be categorized into the two core principles above.    </p>
+<table>
+<thead>
+<tr>
+<th>Principle</th>
+<th>Sub-Chapter</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Defense in depth</td>
+<td>3.3 isolation and containment</td>
+</tr>
+<tr>
+<td></td>
+<td>3.6 exploit mitigation</td>
+</tr>
+<tr>
+<td></td>
+<td>3.7 integrity</td>
+</tr>
+<tr>
+<td></td>
+<td>3.8 patching&#x2F;updates</td>
+</tr>
+<tr>
+<td></td>
+<td>3.9 cellular security (special case)</td>
+</tr>
+<tr>
+<td>Safe by design</td>
+<td>3-1 enforced authorization</td>
+</tr>
+<tr>
+<td></td>
+<td>3.2 user authentication</td>
+</tr>
+<tr>
+<td></td>
+<td>3.4 by-default encryption at rest</td>
+</tr>
+<tr>
+<td></td>
+<td>3.5 in transit</td>
+</tr>
+</tbody></table>
+<h2 id="3-1-Enforced-authorization-Ongoing"><a href="#3-1-Enforced-authorization-Ongoing" class="headerlink" title="3.1 Enforced authorization (Ongoing)"></a>3.1 Enforced authorization (Ongoing)</h2><p>Enforcing meaningful consent in authorization decisions.    </p>
+<h2 id="3-2-User-authentication-Ongoing"><a href="#3-2-User-authentication-Ongoing" class="headerlink" title="3.2 User authentication (Ongoing)"></a>3.2 User authentication (Ongoing)</h2><h2 id="3-3-Isolation-and-containment-Ongoing"><a href="#3-3-Isolation-and-containment-Ongoing" class="headerlink" title="3.3 Isolation and containment (Ongoing)"></a>3.3 Isolation and containment (Ongoing)</h2><h2 id="3-4-By-default-encryption-at-rest-Ongoing"><a href="#3-4-By-default-encryption-at-rest-Ongoing" class="headerlink" title="3.4 By-default encryption at rest (Ongoing)"></a>3.4 By-default encryption at rest (Ongoing)</h2><p>Encrypt data at rest.    </p>
+<h2 id="3-5-In-transit-Ongoing"><a href="#3-5-In-transit-Ongoing" class="headerlink" title="3.5 In transit (Ongoing)"></a>3.5 In transit (Ongoing)</h2><p>Encrypt data in transit.    </p>
+<h2 id="3-6-Exploit-mitigation-Ongoing"><a href="#3-6-Exploit-mitigation-Ongoing" class="headerlink" title="3.6 Exploit mitigation (Ongoing)"></a>3.6 Exploit mitigation (Ongoing)</h2><h2 id="3-7-Integrity-Ongoing"><a href="#3-7-Integrity-Ongoing" class="headerlink" title="3.7 Integrity (Ongoing)"></a>3.7 Integrity (Ongoing)</h2><h2 id="3-8-Patching-Updates-Ongoing"><a href="#3-8-Patching-Updates-Ongoing" class="headerlink" title="3.8 Patching&#x2F;Updates (Ongoing)"></a>3.8 Patching&#x2F;Updates (Ongoing)</h2><h2 id="3-9-Cellular-network-security-Ongoing"><a href="#3-9-Cellular-network-security-Ongoing" class="headerlink" title="3.9 Cellular network security (Ongoing)"></a>3.9 Cellular network security (Ongoing)</h2>
+  </div>
+</article>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Recent</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Archives</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#3-Implementation-on-various-layers-of-the-OS"><span class="toc-number">1.</span> <span class="toc-text">3. Implementation on various layers of the OS</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1-Enforced-authorization-Ongoing"><span class="toc-number">1.1.</span> <span class="toc-text">3.1 Enforced authorization (Ongoing)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-2-User-authentication-Ongoing"><span class="toc-number">1.2.</span> <span class="toc-text">3.2 User authentication (Ongoing)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-3-Isolation-and-containment-Ongoing"><span class="toc-number">1.3.</span> <span class="toc-text">3.3 Isolation and containment (Ongoing)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-4-By-default-encryption-at-rest-Ongoing"><span class="toc-number">1.4.</span> <span class="toc-text">3.4 By-default encryption at rest (Ongoing)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-5-In-transit-Ongoing"><span class="toc-number">1.5.</span> <span class="toc-text">3.5 In transit (Ongoing)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-6-Exploit-mitigation-Ongoing"><span class="toc-number">1.6.</span> <span class="toc-text">3.6 Exploit mitigation (Ongoing)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-7-Integrity-Ongoing"><span class="toc-number">1.7.</span> <span class="toc-text">3.7 Integrity (Ongoing)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-8-Patching-Updates-Ongoing"><span class="toc-number">1.8.</span> <span class="toc-text">3.8 Patching&#x2F;Updates (Ongoing)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-9-Cellular-network-security-Ongoing"><span class="toc-number">1.9.</span> <span class="toc-text">3.9 Cellular network security (Ongoing)</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://yuqidai.github.io/2024/08/18/ASM/ASM_CH3_Implementation%20of%20ASM/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://yuqidai.github.io/2024/08/18/ASM/ASM_CH3_Implementation%20of%20ASM/&text=Implementation of ASM"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://yuqidai.github.io/2024/08/18/ASM/ASM_CH3_Implementation%20of%20ASM/&title=Implementation of ASM"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://yuqidai.github.io/2024/08/18/ASM/ASM_CH3_Implementation%20of%20ASM/&is_video=false&description=Implementation of ASM"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Implementation of ASM&body=Check out this article: https://yuqidai.github.io/2024/08/18/ASM/ASM_CH3_Implementation%20of%20ASM/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://yuqidai.github.io/2024/08/18/ASM/ASM_CH3_Implementation%20of%20ASM/&title=Implementation of ASM"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://yuqidai.github.io/2024/08/18/ASM/ASM_CH3_Implementation%20of%20ASM/&title=Implementation of ASM"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://yuqidai.github.io/2024/08/18/ASM/ASM_CH3_Implementation%20of%20ASM/&title=Implementation of ASM"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://yuqidai.github.io/2024/08/18/ASM/ASM_CH3_Implementation%20of%20ASM/&title=Implementation of ASM"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://yuqidai.github.io/2024/08/18/ASM/ASM_CH3_Implementation%20of%20ASM/&name=Implementation of ASM&description="><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-mid">
+    Copyright &copy; 2024 Dai Yuqi ❤️ updated on 20th July 2024.
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+
+
+<link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
+
+
+<!-- jquery -->
+
+<script src="/lib/jquery/jquery.min.js"></script>
+
+
+<script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+
+
+
+

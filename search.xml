@@ -4,6 +4,63 @@
   
     
     <entry>
+      <title>Implementation of ASM</title>
+      <link href="/2024/08/18/ASM/ASM_CH3_Implementation%20of%20ASM/"/>
+      <url>/2024/08/18/ASM/ASM_CH3_Implementation%20of%20ASM/</url>
+      
+        <content type="html"><![CDATA[<h1 id="3-Implementation-on-various-layers-of-the-OS"><a href="#3-Implementation-on-various-layers-of-the-OS" class="headerlink" title="3. Implementation on various layers of the OS"></a>3. Implementation on various layers of the OS</h1><p>First thing first, the core principles of ASM, are:    </p><ol><li><p>Defense in depth (DiD)<br> In brief, DiD means adopint many aspects of protections to make the object secure. For example, if you want to steal the private data in Android, first you need to root the device, then let’s say after that you only need to decrypt the encrypted data. So in this case, we protect the data through 2 different aspects, one is rooting, the other is data encryption, this is called DiD.    </p><p> Take one more example. Consider you have two types of ways to unlock your screen, one is using the 4 digits password, or using your biometric feature such as fingerprint or face recognization. Then this is not DiD.    </p><p> So the difference between these two cases are that, if a hacker break one protection, here’s another one still working and the hacker can not achieve his goal, then DiD. </p></li><li><p>Safe by design&#x2F;default (SbD)<br> The default use of an operating system component or service should always protect security and privacy assumptions.</p></li></ol><p>The following security mechanism we are going to introduce can be categorized into the two core principles above.    </p><table><thead><tr><th>Principle</th><th>Sub-Chapter</th></tr></thead><tbody><tr><td>Defense in depth</td><td>3.3 isolation and containment</td></tr><tr><td></td><td>3.6 exploit mitigation</td></tr><tr><td></td><td>3.7 integrity</td></tr><tr><td></td><td>3.8 patching&#x2F;updates</td></tr><tr><td></td><td>3.9 cellular security (special case)</td></tr><tr><td>Safe by design</td><td>3-1 enforced authorization</td></tr><tr><td></td><td>3.2 user authentication</td></tr><tr><td></td><td>3.4 by-default encryption at rest</td></tr><tr><td></td><td>3.5 in transit</td></tr></tbody></table><h2 id="3-1-Enforced-authorization-Ongoing"><a href="#3-1-Enforced-authorization-Ongoing" class="headerlink" title="3.1 Enforced authorization (Ongoing)"></a>3.1 Enforced authorization (Ongoing)</h2><p>Enforcing meaningful consent in authorization decisions.    </p><h2 id="3-2-User-authentication-Ongoing"><a href="#3-2-User-authentication-Ongoing" class="headerlink" title="3.2 User authentication (Ongoing)"></a>3.2 User authentication (Ongoing)</h2><h2 id="3-3-Isolation-and-containment-Ongoing"><a href="#3-3-Isolation-and-containment-Ongoing" class="headerlink" title="3.3 Isolation and containment (Ongoing)"></a>3.3 Isolation and containment (Ongoing)</h2><h2 id="3-4-By-default-encryption-at-rest-Ongoing"><a href="#3-4-By-default-encryption-at-rest-Ongoing" class="headerlink" title="3.4 By-default encryption at rest (Ongoing)"></a>3.4 By-default encryption at rest (Ongoing)</h2><p>Encrypt data at rest.    </p><h2 id="3-5-In-transit-Ongoing"><a href="#3-5-In-transit-Ongoing" class="headerlink" title="3.5 In transit (Ongoing)"></a>3.5 In transit (Ongoing)</h2><p>Encrypt data in transit.    </p><h2 id="3-6-Exploit-mitigation-Ongoing"><a href="#3-6-Exploit-mitigation-Ongoing" class="headerlink" title="3.6 Exploit mitigation (Ongoing)"></a>3.6 Exploit mitigation (Ongoing)</h2><h2 id="3-7-Integrity-Ongoing"><a href="#3-7-Integrity-Ongoing" class="headerlink" title="3.7 Integrity (Ongoing)"></a>3.7 Integrity (Ongoing)</h2><h2 id="3-8-Patching-Updates-Ongoing"><a href="#3-8-Patching-Updates-Ongoing" class="headerlink" title="3.8 Patching&#x2F;Updates (Ongoing)"></a>3.8 Patching&#x2F;Updates (Ongoing)</h2><h2 id="3-9-Cellular-network-security-Ongoing"><a href="#3-9-Cellular-network-security-Ongoing" class="headerlink" title="3.9 Cellular network security (Ongoing)"></a>3.9 Cellular network security (Ongoing)</h2>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> ASM </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>General Security Model of Android</title>
+      <link href="/2024/08/18/ASM/ASM_CH2_Generic%20Security%20Model/"/>
+      <url>/2024/08/18/ASM/ASM_CH2_Generic%20Security%20Model/</url>
+      
+        <content type="html"><![CDATA[<ol><li><p>Multi-party authorization<br> According to the reference papar (chapter 3) given at the beginning of this blog, the term multi-part authorization is actually another type of “Access Control”.    </p><p> In the reference paper, they define three types of participants in the whole Android system:    </p><ul><li>Users</li><li>Developers</li><li>Platform</li></ul><p> DAC (discretionary access control) is been used in <em><strong>users</strong></em> and <em><strong>developers</strong></em> groups which is stated in detail in the paper. As for the access control method among <em><strong>users</strong></em>, <em><strong>developers</strong></em> and <em><strong>platform</strong></em>, they adopt MAC (mandatory access control). For the detail of the connection between DAC and MAC, refer to <a href="https://www.usenix.org/system/files/sec20_slides_hernandez_final.pdf">BIGMAC: Fine-Grained Policy Analysis of Android Firmware</a>    </p><p> In the paper they say, for <em><strong>users</strong></em> and <em><strong>developers</strong></em>:</p><ul><li>Data in shared storage is controlled by <em><strong>users</strong></em>.</li><li>Data in private app directories and app virtual address space is controlled by apps (<em><strong>developers</strong></em>).</li><li>Data in special system locations is controlled by the <em><strong>platform</strong></em> (e.g. list of granted permissions).</li></ul></li><li><p>Open ecosystem access<br> No central control organization, which <strong>means</strong> “Instead of creating specific platform APIs for every conceivable workflow, app developers are free to define their own APIs they offer to other apps.”    </p><p> Which also means system developers of Android are only responsible for the platform-level security issues, but for the upper architecture, it should be protected both by <em><strong>developers</strong></em> and then finally <em><strong>users</strong></em>.</p></li><li><p>Security is a compatibility requirement<br> To get straight to the point, if your modding “android” is not complied with <em><strong>CDD</strong></em> and cannot pass <em><strong>CTS</strong></em>, then basiclly it’s not Android. The exception are, for example, you implement a new security model that can be admitted by the security team of Android. Let’s say, allowing you system to be <code>rooting</code>, but can make sure your system can return to a known-good state.</p></li><li><p>Factory reset restores the device to a safe state<br> Factory reset returns an Android device to a state that only depends on system code that is covered by <code>Verified Boot</code>. An important aspect is supply chain security of these factory images in the sense of integrity and authenticity of system code.</p></li><li><p>Applications are security principals<br>  Android apps are not considered to be fully authorized agents for user actions.</p></li></ol><p>In summary, even though the Android doesn’t fully grant the <em><strong>users</strong></em> with all the power, but in this way, it can also prevent the <em><strong>users</strong></em> from the tricks of malicious apps.    </p><p>The Android platform security model does not currently have a simple, consistent representation in formal notation because these rules evolved from practical experience instead of a top-down theoretical design. The five rules are, at the time of this writing, the simplest expression of how these different security controls combine at the meta level.    </p><ol><li>Machenism summarization</li></ol><p><img src="/images/ASM_Resource/CH2_ASMechanism01.png" alt="ASMechanism Summary"></p><ol start="2"><li>Machenism in practical</li></ol><p><img src="/images/ASM_Resource/CH2_ASMechanism02.png" alt="ASMechanism Practical"></p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> ASM </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>The outline of following blogs</title>
+      <link href="/2024/08/18/ASM/ASM_Outline/"/>
+      <url>/2024/08/18/ASM/ASM_Outline/</url>
+      
+        <content type="html"><![CDATA[<h1 id="ASM-Android-Security-Model"><a href="#ASM-Android-Security-Model" class="headerlink" title="ASM (Android Security Model)"></a>ASM (Android Security Model)</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">This blog is a comprehensive review of the paper  [Android Security Model](https://arxiv.org/pdf/1904.05572), based on the content ot the paper, some personal thoughts are also added to this blog including the personal perspective of the author to ASM and the summarization of the content and so on.</span><br></pre></td></tr></table></figure><h2 id="1-The-context-an-basis-of-ASM"><a href="#1-The-context-an-basis-of-ASM" class="headerlink" title="1. The context an basis of ASM"></a>1. The context an basis of ASM</h2><h3 id="1-1-Android-is-an-opensource-ecosystem"><a href="#1-1-Android-is-an-opensource-ecosystem" class="headerlink" title="1.1 Android is an opensource ecosystem"></a>1.1 Android is an opensource ecosystem</h3><h3 id="1-2-Android-is-defined-by-compatibility-requirements"><a href="#1-2-Android-is-defined-by-compatibility-requirements" class="headerlink" title="1.2 Android is defined by compatibility requirements"></a>1.2 Android is defined by compatibility requirements</h3><h3 id="1-3-Threat-model"><a href="#1-3-Threat-model" class="headerlink" title="1.3 Threat model"></a>1.3 Threat model</h3><h2 id="2-General-Security-Model"><a href="#2-General-Security-Model" class="headerlink" title="2. General Security Model"></a>2. General Security Model</h2><h2 id="3-Implementation-on-various-layers-of-the-OS"><a href="#3-Implementation-on-various-layers-of-the-OS" class="headerlink" title="3. Implementation on various layers of the OS"></a>3. Implementation on various layers of the OS</h2><h3 id="3-1-Enforced-authorization"><a href="#3-1-Enforced-authorization" class="headerlink" title="3.1 Enforced authorization"></a>3.1 Enforced authorization</h3><h3 id="3-2-User-authentication"><a href="#3-2-User-authentication" class="headerlink" title="3.2 User authentication"></a>3.2 User authentication</h3><h3 id="3-3-Isolation-and-containment"><a href="#3-3-Isolation-and-containment" class="headerlink" title="3.3 Isolation and containment"></a>3.3 Isolation and containment</h3><h3 id="3-4-By-default-encryption-at-rest"><a href="#3-4-By-default-encryption-at-rest" class="headerlink" title="3.4 By-default encryption at rest"></a>3.4 By-default encryption at rest</h3><h3 id="3-5-In-transit"><a href="#3-5-In-transit" class="headerlink" title="3.5 In transit"></a>3.5 In transit</h3><h3 id="3-6-Exploit-mitigation"><a href="#3-6-Exploit-mitigation" class="headerlink" title="3.6 Exploit mitigation"></a>3.6 Exploit mitigation</h3><h3 id="3-7-Integrity"><a href="#3-7-Integrity" class="headerlink" title="3.7 Integrity"></a>3.7 Integrity</h3><h3 id="3-8-Patching-Updates"><a href="#3-8-Patching-Updates" class="headerlink" title="3.8 Patching&#x2F;Updates"></a>3.8 Patching&#x2F;Updates</h3><h3 id="3-9-Cellular-network-security"><a href="#3-9-Cellular-network-security" class="headerlink" title="3.9 Cellular network security"></a>3.9 Cellular network security</h3><h2 id="4-Special-cases-and-related-academic-work-on-Android-security"><a href="#4-Special-cases-and-related-academic-work-on-Android-security" class="headerlink" title="4. Special cases and related academic work on Android security"></a>4. Special cases and related academic work on Android security</h2><h2 id="5-EASTER-EGG"><a href="#5-EASTER-EGG" class="headerlink" title="5. EASTER EGG"></a>5. EASTER EGG</h2><p><strong>On Android version above 11.x</strong>    </p><ol><li>Open your settings</li><li>Go to “About Phone”</li><li>Press “Android Version” button for couple of times or press it for a few seconds</li><li>Have fun</li></ol>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> ASM </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>The context and basis of ASM</title>
       <link href="/2024/08/18/ASM/ASM_CH1_Basis/"/>
       <url>/2024/08/18/ASM/ASM_CH1_Basis/</url>
@@ -118,7 +175,7 @@
     
     
     <entry>
-      <title>Matplotlib doesn&#39;t support Chinese</title>
+      <title>ISSUE - Matplotlib doesn&#39;t support Chinese</title>
       <link href="/2024/03/03/MISC/mojibake/Matplotlib%20doesn&#39;t%20support%20Chinese/"/>
       <url>/2024/03/03/MISC/mojibake/Matplotlib%20doesn&#39;t%20support%20Chinese/</url>
       
