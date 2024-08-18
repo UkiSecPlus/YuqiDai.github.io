@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <meta name="description" content="Multi-party authorization According to the reference papar (chapter 3) given at the beginning of this blog, the term multi-part authorization is actually another type of “Access Control”.      In the">
 <meta property="og:type" content="article">
-<meta property="og:title" content="General Security Model of Android">
+<meta property="og:title" content="ASM CH2 - General Security Model of Android">
 <meta property="og:url" content="https://yuqidai.github.io/2024/08/18/ASM/ASM_CH2_Generic%20Security%20Model/index.html">
 <meta property="og:site_name" content="Enclave NO.0X7971">
 <meta property="og:description" content="Multi-party authorization According to the reference papar (chapter 3) given at the beginning of this blog, the term multi-part authorization is actually another type of “Access Control”.      In the">
@@ -16,7 +16,7 @@
 <meta property="og:image" content="https://yuqidai.github.io/images/ASM_Resource/CH2_ASMechanism01.png">
 <meta property="og:image" content="https://yuqidai.github.io/images/ASM_Resource/CH2_ASMechanism02.png">
 <meta property="article:published_time" content="2024-08-18T15:12:51.536Z">
-<meta property="article:modified_time" content="2024-08-18T15:15:28.298Z">
+<meta property="article:modified_time" content="2024-08-18T15:29:25.160Z">
 <meta property="article:author" content="Dai Yuqi">
 <meta property="article:tag" content="ASM">
 <meta name="twitter:card" content="summary">
@@ -40,7 +40,7 @@
         
     
     <!-- title -->
-    <title>General Security Model of Android</title>
+    <title>ASM CH2 - General Security Model of Android</title>
     <!-- styles -->
     
 <link rel="stylesheet" href="/css/style.css">
@@ -89,15 +89,15 @@
     <div id="share" style="display: none">
       <ul>
   <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://yuqidai.github.io/2024/08/18/ASM/ASM_CH2_Generic%20Security%20Model/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://yuqidai.github.io/2024/08/18/ASM/ASM_CH2_Generic%20Security%20Model/&text=General Security Model of Android"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://yuqidai.github.io/2024/08/18/ASM/ASM_CH2_Generic%20Security%20Model/&title=General Security Model of Android"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://yuqidai.github.io/2024/08/18/ASM/ASM_CH2_Generic%20Security%20Model/&is_video=false&description=General Security Model of Android"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=General Security Model of Android&body=Check out this article: https://yuqidai.github.io/2024/08/18/ASM/ASM_CH2_Generic%20Security%20Model/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://yuqidai.github.io/2024/08/18/ASM/ASM_CH2_Generic%20Security%20Model/&title=General Security Model of Android"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://yuqidai.github.io/2024/08/18/ASM/ASM_CH2_Generic%20Security%20Model/&title=General Security Model of Android"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://yuqidai.github.io/2024/08/18/ASM/ASM_CH2_Generic%20Security%20Model/&title=General Security Model of Android"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://yuqidai.github.io/2024/08/18/ASM/ASM_CH2_Generic%20Security%20Model/&title=General Security Model of Android"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://yuqidai.github.io/2024/08/18/ASM/ASM_CH2_Generic%20Security%20Model/&name=General Security Model of Android&description="><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://yuqidai.github.io/2024/08/18/ASM/ASM_CH2_Generic%20Security%20Model/&text=ASM CH2 - General Security Model of Android"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://yuqidai.github.io/2024/08/18/ASM/ASM_CH2_Generic%20Security%20Model/&title=ASM CH2 - General Security Model of Android"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://yuqidai.github.io/2024/08/18/ASM/ASM_CH2_Generic%20Security%20Model/&is_video=false&description=ASM CH2 - General Security Model of Android"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=ASM CH2 - General Security Model of Android&body=Check out this article: https://yuqidai.github.io/2024/08/18/ASM/ASM_CH2_Generic%20Security%20Model/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://yuqidai.github.io/2024/08/18/ASM/ASM_CH2_Generic%20Security%20Model/&title=ASM CH2 - General Security Model of Android"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://yuqidai.github.io/2024/08/18/ASM/ASM_CH2_Generic%20Security%20Model/&title=ASM CH2 - General Security Model of Android"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://yuqidai.github.io/2024/08/18/ASM/ASM_CH2_Generic%20Security%20Model/&title=ASM CH2 - General Security Model of Android"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://yuqidai.github.io/2024/08/18/ASM/ASM_CH2_Generic%20Security%20Model/&title=ASM CH2 - General Security Model of Android"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://yuqidai.github.io/2024/08/18/ASM/ASM_CH2_Generic%20Security%20Model/&name=ASM CH2 - General Security Model of Android&description="><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -114,7 +114,7 @@
   <header>
     
     <h1 class="posttitle" itemprop="name headline">
-        General Security Model of Android
+        ASM CH2 - General Security Model of Android
     </h1>
 
 
@@ -207,15 +207,15 @@
     <div id="share-footer" style="display: none">
       <ul>
   <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://yuqidai.github.io/2024/08/18/ASM/ASM_CH2_Generic%20Security%20Model/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://yuqidai.github.io/2024/08/18/ASM/ASM_CH2_Generic%20Security%20Model/&text=General Security Model of Android"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://yuqidai.github.io/2024/08/18/ASM/ASM_CH2_Generic%20Security%20Model/&title=General Security Model of Android"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://yuqidai.github.io/2024/08/18/ASM/ASM_CH2_Generic%20Security%20Model/&is_video=false&description=General Security Model of Android"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=General Security Model of Android&body=Check out this article: https://yuqidai.github.io/2024/08/18/ASM/ASM_CH2_Generic%20Security%20Model/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://yuqidai.github.io/2024/08/18/ASM/ASM_CH2_Generic%20Security%20Model/&title=General Security Model of Android"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://yuqidai.github.io/2024/08/18/ASM/ASM_CH2_Generic%20Security%20Model/&title=General Security Model of Android"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://yuqidai.github.io/2024/08/18/ASM/ASM_CH2_Generic%20Security%20Model/&title=General Security Model of Android"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://yuqidai.github.io/2024/08/18/ASM/ASM_CH2_Generic%20Security%20Model/&title=General Security Model of Android"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://yuqidai.github.io/2024/08/18/ASM/ASM_CH2_Generic%20Security%20Model/&name=General Security Model of Android&description="><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://yuqidai.github.io/2024/08/18/ASM/ASM_CH2_Generic%20Security%20Model/&text=ASM CH2 - General Security Model of Android"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://yuqidai.github.io/2024/08/18/ASM/ASM_CH2_Generic%20Security%20Model/&title=ASM CH2 - General Security Model of Android"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://yuqidai.github.io/2024/08/18/ASM/ASM_CH2_Generic%20Security%20Model/&is_video=false&description=ASM CH2 - General Security Model of Android"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=ASM CH2 - General Security Model of Android&body=Check out this article: https://yuqidai.github.io/2024/08/18/ASM/ASM_CH2_Generic%20Security%20Model/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://yuqidai.github.io/2024/08/18/ASM/ASM_CH2_Generic%20Security%20Model/&title=ASM CH2 - General Security Model of Android"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://yuqidai.github.io/2024/08/18/ASM/ASM_CH2_Generic%20Security%20Model/&title=ASM CH2 - General Security Model of Android"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://yuqidai.github.io/2024/08/18/ASM/ASM_CH2_Generic%20Security%20Model/&title=ASM CH2 - General Security Model of Android"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://yuqidai.github.io/2024/08/18/ASM/ASM_CH2_Generic%20Security%20Model/&title=ASM CH2 - General Security Model of Android"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://yuqidai.github.io/2024/08/18/ASM/ASM_CH2_Generic%20Security%20Model/&name=ASM CH2 - General Security Model of Android&description="><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
